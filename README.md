@@ -34,7 +34,7 @@
 等等，目前项目所涵盖的科目还很少，以下为主要内容。
 
 ```
-CQUT-electronic-information-engineering
+CQUT-Course-Guide-Sharing-Scheme
 课程目录
 ├─ DSP技术及应用
 ├─ FPGA
