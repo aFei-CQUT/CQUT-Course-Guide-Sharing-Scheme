@@ -1,200 +1,201 @@
-# This project is created by aFei-CQUT
-# ------------------------------------------------------------------------------------------------------------------------------------
-#   About aFei-CQUT
-# - Interests&Hobbies: Programing,  ChatGPT,  Reading serious books,  Studying academical papers.
-# - CurrentlyLearning: Mathmodeling，Python and Mathmatica (preparing for National College Mathematical Contest in Modeling).
-# - Email:2039787966@qq.com
-# - Pronouns: Chemical Engineering, Computer Science, Enterprising, Diligent, Hard-working, Sophomore,Chongqing Institute of Technology,
-# - Looking forward to collaborating on experimental data processing of chemical engineering principle
-# ------------------------------------------------------------------------------------------------------------------------------------
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 from sympy import symbols, diff, solve
+from matplotlib import rcParams
+import zipfile
+import os
 
-# 函数化处理不同苯甲酸和苯的燃烧热数据
+class CombustionHeatAnalysis:
+    """
+    燃烧热分析类
+    
+    用于分析和可视化燃烧热实验数据。
+    """
 
-def process_data(temperature_data, substance_name, arc_name):
-    # 定义多项式拟合函数
-    def polynomial_fit(x, *coeffs):
+    def __init__(self, temperature_data, substance_name, arc_name):
+        """
+        初始化燃烧热分析对象
+        
+        :param temperature_data: 温度数据列表
+        :param substance_name: 物质名称
+        :param arc_name: 存档名称
+        """
+        self.temperature_data = temperature_data
+        self.substance_name = substance_name
+        self.arc_name = arc_name
+        self.setup_plot_config()
+        self.process_data()
+
+    def setup_plot_config(self):
+        """设置绘图配置"""
+        config = {
+            "font.family": 'serif',
+            "font.size": 12,
+            "mathtext.fontset": 'stix',
+            "font.serif": ['Times New Roman'],
+        }
+        rcParams.update(config)
+
+    def segment_data(self):
+        """将数据分段为点火前、反应中和熄灭后"""
+        self.before_ignition = self.temperature_data[:7]
+        self.during_reaction = self.temperature_data[7:-6]
+        self.after_extinguish = self.temperature_data[-7:]
+
+    def create_point_data(self):
+        """创建点数据数组"""
+        self.point_before = np.array([range(1, 8), self.before_ignition]).T
+        self.point_during = np.array([range(8, len(self.temperature_data)-5), self.during_reaction]).T
+        self.point_after = np.array([range(len(self.temperature_data)-6, len(self.temperature_data)+1), self.after_extinguish]).T
+
+    def mark_special_points(self):
+        """标记特殊点"""
+        self.point_positive7 = [7, self.temperature_data[6]]
+        self.point_negative7 = [len(self.temperature_data)-6, self.temperature_data[-7]]
+        self.point_mean = np.mean([self.point_positive7, self.point_negative7], axis=0)
+
+    def fit_data(self):
+        """拟合数据"""
+        self.coeffs_before, _ = curve_fit(lambda x, *coeffs: self.polynomial_fit(x, *coeffs),
+                                          self.point_before[:, 0], self.point_before[:, 1], p0=[1]*4)
+        self.coeffs_during, _ = curve_fit(lambda x, *coeffs: self.polynomial_fit(x, *coeffs),
+                                          self.point_during[:, 0], self.point_during[:, 1], p0=[1]*8)
+        self.coeffs_after, _ = curve_fit(lambda x, *coeffs: self.polynomial_fit(x, *coeffs),
+                                         self.point_after[:, 0], self.point_after[:, 1], p0=[1]*4)
+
+    def polynomial_fit(self, x, *coeffs):
+        """多项式拟合函数"""
         return sum(c * x**i for i, c in enumerate(coeffs))
 
-    # 温度数据分段
-    
-    # 前7个数据
-    temperature_burn_before = temperature_data[:7]
-    # 中间段数据（个数不定）
-    temperature_burn_during = temperature_data[7:len(temperature_data)-6]
-    # 后7个数据
-    temperature_burn_after = temperature_data[len(temperature_data)-7:]
-
-    # 数据坐标化，即用二维坐标点(x，y)的形式表达，便于拟合
-    
-    # 前7个数据点
-    point_temperature_burn_before = np.array([range(1, 8), temperature_burn_before]).T
-    # 中间段数据点（个数不定）
-    point_temperature_burn_during = np.array([range(8, len(temperature_data)-5), temperature_burn_during]).T
-    # 后7个数据点
-    point_temperature_burn_after = np.array([range(len(temperature_data)-6, len(temperature_data)+1), temperature_burn_after]).T
-    
-    # 特殊点标记
-    
-    # 正数第7个数据点
-    point_positive7 = [7, temperature_data[6]]
-    # 倒数第7个数据点
-    point_negetive7 = [len(temperature_data)-6, temperature_data[-7]]
-    # 正数第7个数据点和倒数第7个数据点的中点
-    point_mean = np.mean([point_positive7, point_negetive7], axis=0)
-
-    # 拟合阶数
-    
-    # 燃烧前泰勒拟合阶数
-    degree_before = 3
-    # 燃烧时泰勒拟合阶数
-    degree_during = 7
-    # 燃烧后泰勒拟合阶数
-    degree_after = 3
-
-    # 拟合参数
-    
-    # 燃烧前泰勒拟合参数
-    coeffs_before, _ = curve_fit(lambda x, *coeffs: polynomial_fit(x, *coeffs),
-                                 point_temperature_burn_before[:, 0], point_temperature_burn_before[:, 1], p0=[1]*(degree_before+1))
-    # 燃烧时泰勒拟合参数
-    coeffs_during, _ = curve_fit(lambda x, *coeffs: polynomial_fit(x, *coeffs),
-                                 point_temperature_burn_during[:, 0], point_temperature_burn_during[:, 1], p0=[1]*(degree_during+1))
-    # 燃烧后泰勒拟合参数
-    coeffs_after, _ = curve_fit(lambda x, *coeffs: polynomial_fit(x, *coeffs),
-                                point_temperature_burn_after[:, 0], point_temperature_burn_after[:, 1], p0=[1]*(degree_after+1))
-
-    # 整合燃烧过程的分段函数
-    def piecewise_fit(x):
-        # 燃烧前
+    def piecewise_fit(self, x):
+        """分段拟合函数"""
         if x < 8:
-            return polynomial_fit(x, *coeffs_before)
-        # 燃烧时
-        elif 8 <= x <= len(temperature_data)-6:
-            return polynomial_fit(x, *coeffs_during)
-        # 燃烧后
-        elif len(temperature_data)-6 <= x <= len(temperature_data) :
-            return polynomial_fit(x, *coeffs_after)
+            return self.polynomial_fit(x, *self.coeffs_before)
+        elif 8 <= x <= len(self.temperature_data)-6:
+            return self.polynomial_fit(x, *self.coeffs_during)
+        elif len(self.temperature_data)-6 <= x <= len(self.temperature_data):
+            return self.polynomial_fit(x, *self.coeffs_after)
 
-    # 对拟合得到得泰勒级表达式求导数，得到在特殊点处的斜率
+    def calculate_slopes(self):
+        """计算斜率"""
+        x = symbols('x')
+        fit_before = sum(c * x**i for i, c in enumerate(self.coeffs_before))
+        fit_after = sum(c * x**i for i, c in enumerate(self.coeffs_after))
+        derivative_before = diff(fit_before, x)
+        derivative_after = diff(fit_after, x)
+        self.slope_positive7 = derivative_before.subs(x, 7)
+        self.slope_negative7 = derivative_after.subs(x, len(self.temperature_data)-6)
+
+    def calculate_tangent_lines(self):
+        """计算切线"""
+        self.tangent_positive7 = lambda x: self.slope_positive7 * (x - 7) + self.point_positive7[1]
+        self.tangent_negative7 = lambda x: self.slope_negative7 * (x - (len(self.temperature_data)-6)) + self.point_negative7[1]
+
+    def calculate_delta_T(self):
+        """计算温度差"""
+        x = symbols('x')
+        sol = solve(self.polynomial_fit(x, *self.coeffs_during) - self.point_mean[1], x)
+        self.point_mean = [sol[0].evalf(), self.point_mean[1]]
+        self.T1 = self.tangent_positive7(self.point_mean[0])
+        self.T2 = self.tangent_negative7(self.point_mean[0])
+        self.delta_T = self.T2 - self.T1
+
+    def plot_results(self):
+        """绘制结果图"""
+        plt.figure(figsize=(16, 10))
+        plt.title(rf'Combustion Heat Analysis - The plot of $\theta - t$ ({self.substance_name})')
+        plt.xlabel(r'$t \ / \ \rm{s}$')
+        plt.ylabel(r'$\theta \ / \ ^{\circ}C$')
+
+        plt.grid(zorder=0)
+
+        # 使用统一的颜色绘制各阶段的数据点
+        plt.scatter(range(1, 8), self.before_ignition, c='blue', marker='o', label='Before ignition', zorder=3)
+        plt.scatter(range(8, len(self.temperature_data)-5), self.during_reaction, c='red', marker='o', label='During reaction', zorder=3)
+        plt.scatter(range(len(self.temperature_data)-6, len(self.temperature_data)+1), self.after_extinguish, c='green', marker='o', label='After extinguish', zorder=3)
+
+        x_vals = np.linspace(1, len(self.temperature_data)+1, 1000)
+        plt.plot(x_vals, [self.piecewise_fit(x) for x in x_vals], 'k-', label='Piecewise fit', zorder=2)
+
+        # 绘制切线和中间点线
+        plt.plot([7, 10], [self.tangent_positive7(7), self.tangent_positive7(10)],\
+                 'blue', label='Tangent line at Point +7')
+        plt.plot([8, 23], [self.tangent_negative7(len(self.temperature_data)-6), \
+                           self.tangent_negative7(len(self.temperature_data))], 'green', label='Tangent line at Point -7')
+        plt.axvline(self.point_mean[0], color='purple', linestyle='dashed', label='Mean point line')
     
-    # 自变量符号x
-    x = symbols('x')
-    # 燃烧前得到的泰勒级拟合函数式
-    fit_temperature_burn_before = sum(c * x**i for i, c in enumerate(coeffs_before))
-    # 求得的燃烧前导数表达式
-    derivative_temperature_burn_before = diff(fit_temperature_burn_before, x)
-    # 燃烧后得到的泰勒级拟合函数式
-    fit_temperature_burn_after = sum(c * x**i for i, c in enumerate(coeffs_after))
-    # 求得的燃烧后导数表达式
-    derivative_temperature_burn_after = diff(fit_temperature_burn_after, x)
-
-    # 由导数表达式计算斜率
+        # 计算并标注点A和点B
+        x_A = self.point_mean[0]
+        y_A = self.tangent_positive7(x_A)
+        plt.scatter(x_A, y_A, color='purple', zorder=4)
+        plt.text(x_A, y_A + 0.1, 'A', color='purple', fontsize=12)
     
-    # 求得的正数第7个点的斜率
-    slope_point_positive7 = derivative_temperature_burn_before.subs(x, 7)
-    # 求得的倒数第7个点的斜率
-    slope_point_negetive7 = derivative_temperature_burn_after.subs(x, len(temperature_data)-6)
-
-    # 点斜式求切线
+        x_B = self.point_mean[0]
+        y_B = self.tangent_negative7(x_B)
+        plt.scatter(x_B, y_B, color='purple', zorder=4)
+        plt.text(x_B, y_B - 0.1, 'B', color='purple', fontsize=12)
     
-    # 求正数第7个点处的切线
-    tangent_point_positive7 = lambda x: slope_point_positive7 * (x - 7) + point_positive7[1]
-    # 求倒数第7个点处的切线
-    tangent_point_negetive7 = lambda x: slope_point_negetive7 * (x - (len(temperature_data)-6)) + point_negetive7[1]
-
-    # 计算ΔT，此处取切线延长线上下的平均值，要用到拟合函数，或者作图得到
-    sol = solve(polynomial_fit(x, *coeffs_during) - point_mean[1], x)
-    point_mean = [sol[0].evalf(), point_mean[1]]
-    T1 = tangent_point_positive7(point_mean[0])
-    T2 = tangent_point_negetive7(point_mean[0])
-    delta_T = T2 - T1
-
-    # 绘图
-    plt.figure(figsize=(10, 6))
-    plt.rcParams['font.family'] = 'SimHei'
-    plt.rcParams['axes.unicode_minus'] = False
-    plt.plot(point_temperature_burn_before[:, 0], point_temperature_burn_before[:, 1], 'ro', label='燃烧前')
-    plt.plot(point_temperature_burn_during[:, 0], point_temperature_burn_during[:, 1], 'go', label='燃烧时')
-    plt.plot(point_temperature_burn_after[:, 0], point_temperature_burn_after[:, 1], 'bo', label='燃烧后')
-
-    x_vals = np.linspace(1, len(temperature_data)+1, 1000)
-    plt.plot(x_vals, [piecewise_fit(x) for x in x_vals], 'k-', label='分段拟合')
-
-    plt.plot([7, 10], [tangent_point_positive7(7), tangent_point_positive7(10)], 'r--')
-    plt.plot([8, 23], [tangent_point_negetive7(len(temperature_data)-6), tangent_point_negetive7(len(temperature_data))], 'b--')
-
-    plt.scatter(*point_positive7, color='red')
-    plt.text(point_positive7[0], point_positive7[1] - 0.1, '正数第 7 个数据点', color='red')
-    plt.scatter(*point_negetive7, color='blue')
-    plt.text(point_negetive7[0], point_negetive7[1] + 0.1, '倒数第 7 个数据点', color='blue')
-    plt.axvline(point_mean[0], color='orange', linestyle='dashed')
-    plt.scatter(*point_mean, color='green')
-    plt.text(point_mean[0], point_mean[1] + 0.3, '中点值', color='green')
-
+        # 标注其他特殊点
+        plt.scatter(*self.point_positive7, color='blue', zorder=3)
+        plt.text(self.point_positive7[0], self.point_positive7[1] - 0.1, 'Point +7', color='blue')
+        plt.scatter(*self.point_negative7, color='green', zorder=3)
+        plt.text(self.point_negative7[0], self.point_negative7[1] + 0.1, 'Point -7', color='green')
+        plt.scatter(*self.point_mean, color='purple', zorder=3)
+        plt.text(self.point_mean[0] + 0.5, self.point_mean[1], 'Mean point', color='purple', 
+                 verticalalignment='center', horizontalalignment='left',
+                 bbox=dict(facecolor='white', edgecolor='none', alpha=0.7))
     
-    plt.legend()
-    plt.xlabel('$t$    单位：$s$')
-    plt.ylabel('$T$    单位:$°C$')
-    plt.title(f'温度-时间拟合图(燃烧热的测定:{substance_name})')
+        plt.legend(loc='upper left')
+        plt.savefig(fr'./拟合图结果/{self.arc_name}', dpi=300)
+        plt.close()
 
-    plt.grid(True, which='both')
-    plt.minorticks_on()
+    def print_results(self):
+        """打印结果"""
+        print(f"Mean point: {tuple(self.point_mean)}")
+        print(f"T_1: {self.T1} °C")
+        print(f"T_2: {self.T2} °C")
+        print(f"ΔT: {self.delta_T} °C")
 
-    plt.gca().spines['top'].set_linewidth(1)
-    plt.gca().spines['bottom'].set_linewidth(1)
-    plt.gca().spines['left'].set_linewidth(1)
-    plt.gca().spines['right'].set_linewidth(1)
+    def process_data(self):
+        """处理数据的主要流程"""
+        self.segment_data()
+        self.create_point_data()
+        self.mark_special_points()
+        self.fit_data()
+        self.calculate_slopes()
+        self.calculate_tangent_lines()
+        self.calculate_delta_T()
+        self.plot_results()
+        self.print_results()
 
-    plt.savefig(fr'./拟合图结果/{arc_name}', dpi=300)
-    plt.show()
+    def compress_results(self):
+        """压缩结果文件"""
+        dir_to_zip = r'./拟合图结果'
+        dir_to_save = r'./拟合图结果.zip'
 
-    # 输出结果
-    print(f"中点: {tuple(point_mean)}")
-    print(f"T_1: {T1} ℃")
-    print(f"T_2: {T2} ℃")
-    print(f"ΔT: {delta_T} ℃")
+        with zipfile.ZipFile(dir_to_save, 'w', zipfile.ZIP_DEFLATED) as zipf:
+            for root, dirs, files in os.walk(dir_to_zip):
+                for file in files:
+                    file_dir = os.path.join(root, file)
+                    arc_name = os.path.relpath(file_dir, dir_to_zip)
+                    zipf.write(file_dir, arc_name)
 
+        print(f'压缩完成，文件保存为: {dir_to_save}')
 
-# 文件路径
+# 主程序
 file_dir = r'./燃烧热的测定原始记录表(非).xlsx'
 sheet_names = pd.ExcelFile(file_dir).sheet_names
 
 ans_benzoic_acid_origin_data_df = pd.read_excel(file_dir, sheet_name=sheet_names[0], header=None)
 ans_naphthalene_origin_data_df = pd.read_excel(file_dir, sheet_name=sheet_names[1], header=None)
 
-# 苯甲酸原始数据
 data_benzoic_acid_temperature = np.array(ans_benzoic_acid_origin_data_df.iloc[3:, 2].values, dtype=float)
-
-# 萘原始数据
 data_naphthalene_temperature = np.array(ans_naphthalene_origin_data_df.iloc[3:, 2].values, dtype=float)
 
-# 处理数据
-process_data(data_benzoic_acid_temperature, '苯甲酸', '苯甲酸燃烧热的测定')
-process_data(data_naphthalene_temperature, '萘', '萘燃烧热的测定')
+benzoic_acid_analysis = CombustionHeatAnalysis(data_benzoic_acid_temperature, 'Benzoic acid', '苯甲酸燃烧热的测定')
+naphthalene_analysis = CombustionHeatAnalysis(data_naphthalene_temperature, 'Naphthalene', '萘燃烧热的测定')
 
-# 拟合图结果压缩
-import zipfile
-import os
-
-# 待压缩的文件路径
-dir_to_zip = r'./拟合图结果'
-
-# 压缩后的保存路径
-dir_to_save = r'./拟合图结果.zip'
-
-# 创建ZipFile对象
-with zipfile.ZipFile(dir_to_save, 'w', zipfile.ZIP_DEFLATED) as zipf:
-    # 遍历目录
-    for root, dirs, files in os.walk(dir_to_zip):
-        for file in files:
-            # 创建相对文件路径并将其写入zip文件
-            file_dir = os.path.join(root, file)
-            arc_name = os.path.relpath(file_dir, dir_to_zip)
-            zipf.write(file_dir, arc_name)
-
-print(f'压缩完成，文件保存为: {dir_to_save}')
+# 压缩结果
+benzoic_acid_analysis.compress_results()
