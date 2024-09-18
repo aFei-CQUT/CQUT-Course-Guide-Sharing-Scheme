@@ -216,15 +216,6 @@ Issue、PR、纠错、补充、上传攻略，完全欢迎！
 - [ ] 制定使用指南
 - [ ] 设计一个网页便于检索与预览
 
-## 🍻赞助
-Buy me coffee.
-
-<div align="center">
-    <img src="https://raw.githubusercontent.com/Royfor12/CQUT-electronic-information-engineering/main/image/Alipay.jpg" width="200px">
-    <img src="https://raw.githubusercontent.com/Royfor12/CQUT-electronic-information-engineering/main/image/WeChat.jpg" width="200px">
-</div>
-
-
 ## ✨ 鸣谢
 
 <a href="https://github.com/Royfor12/CQUT-electronic-information-engineering/graphs/contributors">
