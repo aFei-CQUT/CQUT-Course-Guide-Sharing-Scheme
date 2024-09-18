@@ -1,0 +1,33 @@
+%%% 附录A
+\chapter{工艺参数处理代码}
+
+
+
+%%% ===============================================
+\section{计算工艺参数}
+\lstinputlisting[
+	language=python,
+	caption=吸收填料塔工艺参数处理代码,
+	label=code:absorabsorption_column
+	]{code/absorption_column.py}
+
+\section{定义优化问题}	
+\lstinputlisting[
+	language=python,
+	caption=吸收塔问题类定义了三个优目标：经济最低，安全最大，符合最大,
+	label=code:absorption_problem
+	]{code/absorption_problem.py}
+
+\section{选择关键变量}
+\lstinputlisting[
+	language=python,
+	caption=控制变量分析，敏感度分析，相关性分析,
+	label=code:variables_analysis
+	]{code/variables_analysis.py}
+
+\section{实现目标优化}
+\lstinputlisting[
+	language=python,
+	caption=提取关键变量用遗传算法，梯度下降实现最优化,
+	label=code:multiobjective_optimize
+	]{code/multiobjective_optimize.py}

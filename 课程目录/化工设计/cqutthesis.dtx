@@ -1,0 +1,2621 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2019-2022 by Miracle0565
+% Copyright (C) 2022-2023 by The-CCSN
+%
+% This file is part of the CQUTthesis package, which is a modified version of the original:
+%     https://github.com/the-ccsn/BUCTthesis
+%
+% The modifications primarily involve changing references from BUCT and 北京化工 to CQUT and 重庆理工,
+% to suit the requirements of a thesis at 重庆理工大学.
+% -------------------------------------------------------
+%
+% This file may be distributed and/or modified under the conditions of the LaTeX Project Public License,
+% either version 1.3c of this license or (at your option) any later version. The latest version of this license
+% is available at:
+%
+%     http://www.latex-project.org/lppl.txt
+%
+% Version 1.3c or later is part of all distributions of LaTeX version 1999/12/01 or later.
+%
+% \fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \iffalse
+%<*driver>
+\ProvidesFile{cqutthesis.dtx}[2024/09/10 v2.0 CQUT Thesis Template]
+\documentclass{ltxdoc}
+\usepackage{manual}
+\begin{document}
+\DocInput{\jobname.dtx}
+\PrintIndex
+\PrintChanges
+\end{document}
+%</driver>
+% \fi
+%
+% \DoNotIndex{\newcommand,\newenvironment,\renewcommand,\renewenvironment}
+% \DoNotIndex{\providecommand,\NewDocumentCommand}
+% \DoNotIndex{\begin,\end,\begingroup,\endgroup}
+% \DoNotIndex{\Huge,\huge,\LARGE,\Large,\large,\normalsize}
+% \DoNotIndex{\small,\footnotesize,\scriptsize,\tiny,\zihao}
+% \DoNotIndex{\addtocounter,\label,\let,\linewidth,\newcounter}
+% \DoNotIndex{\noindent,\normalfont,\par,\parskip,\phantomsection}
+% \DoNotIndex{\providecommand,\ProvidesPackage,\refstepcounter}
+% \DoNotIndex{\setcounter,\setlength,\string,\strut}
+% \DoNotIndex{\textbackslash,\texttt,\ttfamily,\usepackage}
+% \DoNotIndex{\par,\\}
+% \DoNotIndex{\if,\ifx,\ifdim,\ifnum,\ifcase,\else,\or,\fi}
+% \DoNotIndex{\let,\def,\xdef,\edef,\newcommand,\renewcommand}
+% \DoNotIndex{\expandafter,\csname,\endcsname,\relax,\protect}
+% \DoNotIndex{\normalfont,\bfseries,\slshape,\sffamily,\interlinepenalty}
+% \DoNotIndex{\textbf,\textit,\textsf,\textsc}
+% \DoNotIndex{\hfil,\par,\hskip,\vskip,\vspace,\quad}
+% \DoNotIndex{\centering,\raggedright,\ref}
+% \DoNotIndex{\c@secnumdepth,\@startsection,\@setfontsize}
+% \DoNotIndex{\ ,\@plus,\@minus,\p@,\z@,\@m,\@M,\@ne,\m@ne}
+% \DoNotIndex{\@@par,\DeclareOperation,\RequirePackage,\LoadClass}
+% \DoNotIndex{\AtBeginDocument,\AtEndDocument}
+%
+%
+% \GetFileInfo{cqutthesis.dtx}
+%
+% \title{\textsf{CQUTthesis}：重庆理工大学学位论文模板}
+% \author{长城学生网络 \\ \texttt{https://github.com/the-ccsn}}
+% \date{\fileversion （\filedate）}
+%
+% \newgeometry{hcentering}
+% \maketitle
+% \tableofcontents\restoregeometry\clearpage
+%
+% \section{欢迎！}
+% CQUTthesis是重庆理工大学本科与硕士、博士研究生毕业论文的 \LaTeX\ 写作模板，版本号~\fileversion。
+% 本文是模板的使用指南，旨在帮助北化毕业生掌握此模板的使用方法，从而写出符合北化
+% \href{https://jiaowuchu.cqut.edu.cn/2018/1009/c515a22046/page.htm}{《本科生毕业设计（论文）撰写规范》}（以下称《本科生规范》）
+% 和 \href{https://xxgk.cqut.edu.cn/2017/1107/c2835a39437/page.htm}{《重庆理工大学研究生学位论文撰写规范（修订）》}（以下称《研究生规范》）
+% 要求的毕业论文。
+%
+% \subsection{模板内容}
+% 本模板为中文论文模板，暂不支持英语专业的论文写作。以下是完整论文的书序，其中划线部分为模板未完成的部分。
+% \begin{description}
+%    \item[本科] 开题报告 \footnote{目前处于实验性质，参见根目录下的 \file{cqut-proposal} 文件夹。}、\CJKsout{中期进展情况检查表} \footnote{由学校提供 Word，可转换为 PDF 文件插入。}、论文封面、诚信声明、任务书、摘要、目录、前言、正文、结论、参考文献、符号说明、致谢和附录；
+%    \item[研究生] 论文封面、版权页（独创性声明和授权书）、\CJKsout{学位论文数据集} \footnotemark[2]、中英文摘要、中英文目录、符号和缩略词说明、正文、参考文献、附录、致谢、作者攻读学位期间发表的学术论文及科研成果目录、作者和导师简介和\CJKsout{答辩委员会决议} \footnote{使用扫描件插入。}。
+% \end{description}
+%
+% \subsection{免责声明}
+% 请您注意，至本文档编译时，重庆理工大学教务处仅提供《本科生规范》和《研究生规范》而未对本模板做任何测试或授权。
+% 模板作者自当尽力，但限于软件等各种因素，由本模板生成的文档可能仍与要求有所出入，
+% 故不保证审查老师对格式不提意见。在开始使用之前，您需要同意：
+% 任何由于使用本模板而引起的论文格式审查问题均与本模板作者无关。
+%
+% \subsection{开源说明}
+% 本模板开源于 \href{https://github.com/the-ccsn/CQUTthesis}{GitHub}，代码部分遵循
+% \href{https://www.latex-project.org/lppl.txt}{\LaTeX\ Project Public License 1.3c} 及以上协议。
+% 模板文件夹中有关学校校徽和校名的插图，其版权归重庆理工大学所有。
+%
+% 由于模板建设尚在起步阶段，欢迎任何有兴趣的同学加入模板的开发工作。
+%
+% \subsection{关于本文}
+% 本文档将对使用这份模板作一简单介绍。在第~\ref{sec:start}~节将概述使用模板前的准备，以及介绍编译方法；
+% 在第~\ref{sec:usage}~节将介绍本模板中新定义及实用的命令与环境；
+% 最后在第~\ref{sec:implementation}~节将简述模板文档类代码，面向对 CQUTthesis 开发感兴趣的用户。
+%
+% 本文档中的宏包、命令等内容以不同字体或形式展现，以作区分：
+% 无衬线字体表示宏包、文档类等存在于计算机上的文件，
+% 如 \file{cqutthesis.cls} 文件、\pkg{amsmath}宏包、\cls{ctexbook} 文档类；
+% 等宽字体表示命令与环境，如 \cs{cqutsetup} 命令、\env{abstract} 环境。
+% 对于命令中的参数将置于尖括号（尖括号无需输入）中，如 \cs{include}\marg{file}；
+% 对于命令行指令，将置于\ {\color{violet!65}\rule[.25ex]{1em}{1ex}} 颜色框内，且需要逐行输入；
+% 而对于 \LaTeX\ 代码，将置于\ {\color{cyan}\rule[.25ex]{1em}{1ex}} 颜色框内，
+% 需要保存为特定文件后进行编译。
+%
+% \section{开始使用}\label{sec:start}
+% \subsection{准备工作}
+% 开始之前，您需要选择一个合适的 \TeX\ 发行版，以及需要一些必要的 \TeX\ 技能。
+% \begin{enumerate}
+%     \item  \TeX\ 发行版：
+%     \begin{description}
+%         \item[本地编译] 建议完整安装 \TeX\ Live 2022 或更新版本。模板\emph{不支持} \CTeX\ 套装。安装 \TeX 发行版的详细步骤可参考\href{https://github.com/OsbertWang/install-latex-guide-zh-cn}{《一份简短的关于 \LaTeX 安装的介绍》}。此外，该文档简要地介绍了几款常见的文本编辑器，可根据喜好自行选择。
+%         \item[在线编译] 推荐 \href{https://www.overleaf.com/}{Overleaf}，它提供了 Ubuntu 系统下的 \TeX\ Live，目前为 2022 版。免费版本足以应对模板的正常编译，至于完整的文档历史和协作编辑等功能则需付费订阅。
+%     \end{description}
+%     \item \TeX\ 技能：本文档不是一份 \LaTeX\ 零基础教程，使用本模板需要对 \LaTeX\ 和参考文献管理工具 \BibTeX 有一定的熟练度。若您是新手，我们建议您先阅读一些入门文档，如\href{http://mirror.ctan.org/info/lshort/chinese/lshort-zh-cn.pdf}{《一份不太简短的 \LaTeXe 介绍》}。
+% \end{enumerate}
+%
+% \subsection{模板组成}
+% 在表 \ref{tab:mainfile} 中罗列了本模板所包含的主要文件。
+% \begin{table}[ht]
+%   \centering
+%   \caption{模板的组成}\label{tab:mainfile}
+%     \begin{tabular}{ll}
+%         \toprule
+%         文件（夹）名 & 简述\\
+%         \midrule
+%         \file{cqutthesis.ins} & \textsc{DocStrip} 驱动文件\\
+%         \file{cqutthesis.dtx} & \textsc{DocStrip} 源文件\\\cmidrule(lr){1-2}
+%         \file{chapter/} & 论文各部分的源文件路径\\
+%         \file{code/} & 源代码的路径\\
+%         \file{cover/} & 论文封面的路径\\
+%         \file{figure/}  & 插图的路径\\\cmidrule(lr){1-2}
+%         \file{main.tex} & 主文件\\
+%         \file{main.pdf} & 示例文档\\
+%         \file{cqutthesis.cls} & 模板的文档类文件\\
+%         \file{thesisbib.bib}  & \BibTeX{}参考文献数据库\\
+%         \file{mycfg.sty} & 自定义配置文件\\
+%         \file{README.md} & 项目自述文件\\
+%         \file{\bfseries cqutthesis.pdf} & 写作指南，即本文\\
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
+%
+% \begin{enumerate}
+%     \item 主文件 \file{main.tex}：定义论文相关信息，并对分散于 \file{chapter/} 文件夹下的各部分内容进行“整合”。这里的“各部分内容”包括诚信声明或版权页、摘要、正文等。
+%     \item 文档类文件 \file{cqutthesis.cls}：格式控制。可由 \file{cqutthesis.ins} 和 \file{cqutthesis.dtx} 生成：
+%     \begin{shell}
+%   xelatex cqutthesis.ins
+%     \end{shell}
+%     \item \file{cqutthesis.pdf}：写作指南，即本文。可由 \file{cqutthesis.dtx} 生成：
+%     \begin{shell}
+%   xelatex cqutthesis.ins
+%   xelatex cqutthesis.dtx
+%   makeindex -s gind.ist -o cqutthesis.ind cqutthesis.idx
+%   xelatex cqutthesis.dtx
+%   xelatex cqutthesis.dtx
+%     \end{shell}
+% \end{enumerate}
+%
+% \subsection{编译论文}
+% 模板基于 \cls{ctexbook} 文档类构建，但\emph{仅} 支持 \XeTeX\ 引擎。
+% 目前参考文献生成基于 \BibTeX，因此完整的编译流程如下：
+% （输入以下命令时可略去文件扩展名）
+% \begin{shell}
+%   xelatex main.tex
+%   bibtex main.tex
+%   xelatex main.tex
+%   xelatex main.tex
+% \end{shell}
+%
+% 或者使用更方便的 latexmk 工具：不加参数则默认对 \file{main.tex} 进行编译。
+% 相比上一种，使用 latexmk 更加自动化，能持续编译直到解决所有的交叉引用：
+% \begin{shell}
+%   latexmk
+% \end{shell}
+%
+% 示例文件会随模板一同发布。建议在写作开始前对示例文件执行一次全编译，以检查编程环境是否合适。
+%
+% \subsection{提问}
+% 对于模板的任何问题或新功能需求请提交至 \href{https://github.com/the-ccsn/CQUTthesis/issues}{GitHub Issues}。
+% 以下步骤可能对排除与精简问题有所帮助：
+% \begin{enumerate}
+%     \item 将 \file{cqutthesis.cls} 和 \file{main.tex} 文件复制到一空白文件夹；
+%     \item 简化 \file{main.tex} 中能复现问题的代码至如下所示：
+%        \begin{latex}
+%   \documentclass[ type = bachelor ]{cqutthesis}      % 请注意指定文档类型
+%   \begin{document}
+%     sOmetHInG GoEs wRoNg.
+%   \end{document}
+%       \end{latex}
+%    \item 如果有必要的话可以将 \file{.log} 文件通过 \href{https://pastebin.com/}{Pastebin} 一并提交。
+% \end{enumerate}
+%
+% \section{使用说明}\label{sec:usage}
+% 本节将简单介绍模板中的命令和环境。除了以下介绍，推荐对照示例文件及源代码看一看。
+%
+% \subsection{论文选项}\label{subsec:options}
+% \subsubsection{文档类选项}
+% 主文件 \file{main.tex} 以
+% \begin{latex}
+%   \documentclass [
+%       type = doctor,          % bachelor | master | doctor
+%       fontset = windows,      % fandol | windows | ...
+%       submit,
+%       openany,                % openany | openright(default)
+%   ]{cqutthesis}
+% \end{latex}
+% 命令载入文档类，从而控制全文格式。
+%
+% 以下逐一简述各个选项：
+%
+% \DescribeOpt{type}
+% \emph{必须指定一种类型}：本科 \opt{bachelor}，硕士 \opt{master}，以及博士 \opt{doctor}。
+% 如：
+% \begin{latex}
+%   % 博士论文
+%   \documentclass[type = doctor]{cqutthesis}
+%   % 或：
+%   % 本科论文
+%   \documentclass[type = bachelor]{cqutthesis}
+% \end{latex}
+%
+% \DescribeOpt{fontset}
+% 该选项会传递至 \pkg{ctex} 宏集，从而指定全文的字体。模板的设置如表~\ref{tab:fontset}~所示。
+%
+% 其中选项 \opt{fandol} 或使用 \opt{\meta{others}} 选项 \footnote{参见\pkg{ctex}宏集第 4.3 小节。}是为了一些不方便安装字体的系统或平台（如 Overleaf）所采取的\emph{临时解决方案}。
+% 这些字体与中易系列字体有少许差别，且偶尔有缺字现象。
+% 因此，强烈建议在最后提交论文前，在合适的环境下使用 \opt{fontset = windows} 进行编译。
+%
+% \begin{table}[ht]
+%   \centering
+%   \caption{模板的字体配置}\label{tab:fontset}
+%     \begin{tabular}{llll}
+%         \toprule
+%         \opt{fontset =}   & \opt{windows} & \opt{fandol} & \opt{\meta{others}}\\
+%         \midrule
+%         中文      & 中易字库 （宋、黑开启伪粗体）  & Fandol 字库 & / \\
+%         西文      & Times New Roman             & Times New Roman & Times New Roman \\
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
+%
+% \emph{此外，论文封面使用的字体比较特殊，因此需要做另外设置。参见~\ref{subsec:cover}~中对封面相关字体的说明。}
+%
+% \DescribeOpt{submit}
+% 是否为提交版本。如果启用则会将文章超链接和代码块的文字颜色全部设置为黑色，适合论文最终提交与付梓。
+% 需要提醒的是，它不能转换插图的颜色。
+%
+% \DescribeOpt{openright}
+% \DescribeOpt{openany}
+% 对于书籍而言，一般章标题都只出现在右边的页面（奇数页），之前不足的页面用空白补足。
+% 这也是打开模板 \opt{openright} 选项的结果：将会在适当处插入一完全空白页。
+% 而 \opt{openany} 则允许在任意页开启新的一章。
+%
+% 其它选项：多余的选项将传递给 \pkg{ctexbook} 文档类，如 \opt{draft} 将关闭插图和部分宏包的渲染，从而加快编译速度。
+%
+% \subsubsection{论文信息}\label{subsec:cqutsetup}
+% \DescribeMacro{\cqutsetup}
+% \DescribeOpt{ChineseTitle}
+% \DescribeOpt{ChineseTitleLineA}
+% \DescribeOpt{ChineseTitleLineB}
+% \DescribeOpt{EnglishTitle}
+% \DescribeOpt{author}
+% \DescribeOpt{class}
+% \DescribeOpt{studentid}
+% \DescribeOpt{school}
+% \DescribeOpt{major}
+% \DescribeOpt{supervisor}
+% \DescribeOpt{msupervisor}
+% \DescribeOpt{ChineseKeywords}
+% \DescribeOpt{EnglishKeywords}
+% \begin{syntax}{cqutsetup}
+%    \marg{键值列表}
+% \end{syntax}
+%
+% 接下来需要定义论文相关信息，使用 \cs{cqutsetup} 命令以 \meta{key}$=$\meta{value}
+% 的形式进行定义，包括论文的中英文标题、作者个人信息等。
+% \begin{latex}
+%    \cqutsetup{
+%        % 论文的中文标题
+%        ChineseTitle         = {基于 \LaTeX\ 的重庆理工大学本硕博毕业论文写作模板},
+%        % 封面上的标题。总字数不要超过 36 个汉字长度。
+%        % 本科：可以一行或分两行写，如无第二行将 ChineseTitleLineB 留空或注释掉；
+%        % 硕博：封面的标题有两行，每一行控制在 18 个汉字长度以内。
+%        % 封面标题首行
+%        ChineseTitleLineA   = {基于 \LaTeX\ 的重庆理工大学本硕博},
+%        % 封面标题次行
+%        ChineseTitleLineB   = {毕业论文写作模板},
+%        % 论文的英文标题，一般需要大写
+%        EnglishTitle        = {CQUTthesis: A \LaTeX\ WRITING TEMPLATE FOR CQUT},
+%        % 作者的中文姓名
+%        author         = {张三},
+%        % 班级（仅本科）
+%        class          = {某某1024},
+%        % 学号
+%        studentid      = {2018020999},
+%        % 学院（仅本科）
+%        school         = {材料科学与工程学院},
+%        % 专业名称
+%        major          = {高分子材料与工程},
+%        % 导师的姓名与职称
+%        supervisor     = {李四教授},
+%        % 专业负责人姓名（仅本科）
+%        msupervisor    = {王五},
+%        % 中文、英文关键词，各关键词间以西文逗号“,”分隔
+%        ChineseKeywords      = {论文,\LaTeX{},模板},
+%        EnglishKeywords      = {thesis,\LaTeX{},template},
+%        % 日期，请注意务必使用形如“YYYY-MM-DD”的格式
+%        date = {2021-12-23},
+%    }
+% \end{latex}
+%
+% \emph{无论是文档类选项还是 \cs{cqutsetup} 命令，各选项之间不要留有空行，并以西文逗号“,”分隔。}
+%
+% 此外，\cs{cqutsetup}\marg{键值列表} 与下列命令等价：
+% \begin{latex}
+%   % 于导言区
+%   \ChineseTitle{基于 \LaTeX\ 的重庆理工大学本硕博毕业论文写作模板}
+%   \EnglishTitle{CQUTthesis: A \LaTeX\ WRITING TEMPLATE FOR CQUT}
+%   % ...（下同）
+% \end{latex}
+%
+% \subsection{封面}\label{subsec:cover}
+% \DescribeMacro{\makecover}
+% \begin{syntax}{makecover}
+%    \oarg{文件路径}
+% \end{syntax}
+%
+% \emph{注意：从2.0版本起，模板将封面集成至论文中而不再单独使用一个文档类文件。}
+%
+% CQUTthesis 对学校印刷的纸质封面进行了仿制，
+% 直接使用而不带任何参数的 \cs{makecover} 会根据所选 \opt{type} 生成对应的封面，封面上的各项信息从前述的 \cs{cqutsetup} 处定义。
+% 需要注意的是，这里的“仿制”仅是实现封面的效果，学校印制的封面需要手写内容，故不能在纸本上替代学校统一印制的封面；
+% 若无特殊说明，可以在提交电子版时使用此封面。但，仍请以教务处最新通告为准。
+%
+% 此外，学校封面使用的方正系列字体未预装于一些操作系统上，
+% 可访问\href{https://www.foundertype.com}{方正字库官网}下载和安装，具体步骤从略。
+%
+% 封面所使用的中文字体清单如下：
+% \begin{enumerate}
+%    \item SimSun，中易宋体
+%    \item SimHei，中易黑体
+%    \item KaiTi，中易楷体
+%    \item STXingkai，华文行楷
+%    \item FZXiaoBiaoSong-B05S，方正小标宋简体
+%    \item FZDaBiaoSong-B06S，方正大标宋简体（仅硕博封面需要）
+% \end{enumerate}
+%
+% 当且仅当存在上述字体文件时模板才会输出电子版的封面。
+% 当然，考虑到有时需要插入扫描页，所以该命令可跟一个可选参数，如：
+% \begin{latex}
+%   \makecover[figure/mycover.pdf]
+% \end{latex}
+% 即可插入位于 \file{figure/mycover.pdf} 的图片来代替。
+%
+% \subsection{前置部分}\label{subsec:frontmatter}
+%
+% 在封面之后、“目录”之前的几个部分，包括“诚信声明”\footnote{根据《现代汉语词典》对“申明”与“声明”二词的释义，%
+% 《本科生规范》中的“诚信申明”应作“诚信声明”；模板以后者作为标题。}（仅本科）、
+% 版权页（仅硕博）、“任务书”（仅本科）、“摘要”和“Abstract”，
+% 分别对应于 \file{chapter/frontmatter.tex} 中的不同命令或环境。
+%
+% \subsubsection{诚信声明与版权页}
+% \DescribeMacro{\makedeclare}
+% \begin{syntax}{makedeclare}
+%    \oarg{文件路径}
+% \end{syntax}
+%
+% 直接使用而不带任何参数的 \cs{makedeclare} 会根据所选 \opt{type} 生成对应内容。
+%
+% 和 \cs{makecover} 一样，该命令也可跟一个可选参数来插入扫描页，如：
+% \begin{latex}
+%   \makedeclare[figure/declare.png]
+% \end{latex}
+% 即可插入位于 \file{figure/declare.png} 的图片来代替。
+%
+% \subsubsection{摘要和关键词}\label{subsubsec:abstract}
+% \DescribeEnv{cabstract}
+% \DescribeEnv{eabstract}
+% 中、英文摘要分别使用 \env{cabstract} 和 \env{eabstract} 环境。
+% \begin{latex}
+%   \begin{cabstract}
+%       中文摘要。
+%   \end{cabstract}
+%   \begin{eabstract}
+%       Abstract in English.
+%   \end{eabstract}
+% \end{latex}
+%
+% 关键词会根据在 \cs{cqutsetup} 中的定义自动生成，参见~\ref{subsec:cqutsetup}。
+%
+% \subsubsection{任务书}\label{subsubsec:taskbook}
+% \DescribeEnv{taskbook}
+% \DescribeMacro{\taskinfo}
+% \DescribeMacro{\taskinfo*}
+% \DescribeEnv{bibenumerate}
+% 该环境仅适用于本科论文中。
+%
+% “本科生毕业设计（论文）任务书”部分使用 \env{taskbook} 环境。
+% 此环境后可跟一个 \texttt{*}（注意不是 \env{taskbook*}），
+% 它会使得生成的任务书页不带任何页眉和页脚，以适合某些特殊情况下使用。
+% \begin{latex}
+%   \begin{taskbook}
+%       ……“任务书”内容（带页眉页脚）
+%   \end{taskbook}
+%   % 或者：
+%   \begin{taskbook}*
+%       ……“任务书”内容（不带页眉页脚）
+%   \end{taskbook}
+% \end{latex}
+%
+% \cs{cqutsetup} 中定义的信息会作用于“任务书”的开头部分，该部分以 \cs{taskinfo} 命令来插入。
+% 这个命令同样有一个带星号的版本即 \cs{taskinfo*}，
+% 二者的区别在于后者比前者少了一次换行，是《本科生规范》中示例的实现，但不适合文字较多时使用。
+%
+% 除此之外，可以选择使用 \env{bibenumerate} 环境来排版有序文献列表，
+% 序号已经设置为带方括号的数字。
+%
+% \emph{以上各部分在源文件中含有部分代码，稍作改动即可。}
+%
+% \subsubsection{目录}\label{subsubsec:content}
+% \DescribeMacro{\tableofcontents}
+% \DescribeMacro{\tableofcontentsEN}
+% \DescribeMacro{\listofdesignfigures}
+% 三个命令分别生成中文目录、英文目录（仅硕博）、设计图纸目录（仅本科部分专业）。
+% \begin{latex}
+%   \tableofcontents
+%   \tableofcontentsEN
+%   \listofdesignfigures
+% \end{latex}
+%
+% 三者是互相独立的。
+% 为生成英文目录，需要在正文中以 \cs{echapter} 等命令指定各级标题的对应英文，参见~\ref{subsubsec:bitoc}；
+% 为生成设计图纸目录，需要在正文中以 \env{dfigure} 环境指定插图为“设计图纸”并计数编号，参见~\ref{subsubsec:dfigure}。
+%
+% \subsubsection{符号说明表}\label{subsubsec:deno}
+% \DescribeEnv{denotation}
+% 符号说明表的源文件位于 \file{chapter/denotation.tex}，
+% 使用 \env{denotation} 环境。
+% 《本科生规范》和《研究生规范》中都未详细规定符号说明表的格式，
+% 模板设计了一个无框线、可跨页的长表格，直接在环境里填入内容即可。
+% 环境接受一个可选参数 \meta{width} ，代表“说明”一列的宽度，用于在必要时调整。
+% \begin{latex}
+%   \begin{denotation}[12cm] % 设置第二列的列宽为 12 cm，默认 10 cm
+%       符号1   &   说明1   \\
+%       符号2   &   说明2   \\
+%   \end{denotation}
+% \end{latex}
+%
+% \emph{注意：“符号说明表”在本科论文中置于“参考文献”之后，与研究生论文有所差异。}
+%
+% \subsubsection{前言}\label{subsubsec:foreword}
+% 该环境仅适用于本科论文中。
+%
+% 该部分的源代码位于 \file{chapter/foreword.tex}，
+% 使用 \env{foreword} 环境，在相应位置输入文本即可。注意不能在此环境中使用
+% \cs{section}等与“章”计数器有关的命令，结论、翻译、致谢部分同理。
+%
+% \subsection{正文部分}\label{subsec:mainmatter}
+%
+% \subsubsection{纲举目张}
+% \DescribeMacro{\include}
+% \DescribeMacro{\input}
+% \begin{syntax}{include}
+%     \marg{文件}
+% \end{syntax}
+% \qquad
+% \begin{syntax}{input}
+%     \marg{文件}
+% \end{syntax}
+%
+% 正文部分各个章节的源文件存放于 \file{chapter/} 文件夹，
+% 只要在 \file{main.tex} 正文部分以上述命令插入各章节即可成文。
+% 插入 \meta{文件} 可以不带扩展名，默认为 \file{.tex}。
+%
+% 使用 \cs{include} 命令会在读入文件前另起一页，而 \cs{input}
+% 纯粹插入文件里的内容。
+% 当随着写作章节增多，每次编译时间也会越来越长。
+% 此时可以选择性地注释部分章节，从而快速编译查错。
+%
+% \subsubsection{双语目录}\label{subsubsec:bitoc}
+% \DescribeMacro{\echapter}
+% \DescribeMacro{\esection}
+% \DescribeMacro{\esubsection}
+% \DescribeMacro{\esubsubsection}
+% \begin{syntax}{echapter}
+%     \marg{英文目录标题}
+% \end{syntax}
+%
+% 这些命令仅适用于硕博论文中，支持章、节、小节和小小节标题，且语法相同。
+%
+% 硕博论文要求中英双语目录，且英语目录要与中文对应。
+% 我们只需在正文章节标题命令后加上对应标签即可。
+% 如：
+% \begin{latex}
+%   \chapter{绪论}\echapter{Introduciton}
+%       \section{基本概念}\esection{Basic Conceptions}
+%       \section{本章小结}\esection{Chapter Summary}
+%   \chapter{实验}\echapter{The Experiments}
+% \end{latex}
+%
+% 可能写两遍 chapter 或 section 显得过于繁琐，我们也有更简单的 \cs{bichapter} 与 \cs{bisection} 等命令。以 \cs{bichapter} 为例，语法格式为：
+%
+% \DescribeMacro{\bichapter}
+% \DescribeMacro{\bisection}
+% \DescribeMacro{\bisubsection}
+% \DescribeMacro{\bisubsubsection}
+% \begin{syntax}{bichapter}
+%     \oarg{中文目录标题}\marg{中文正文标题}\marg{英文目录标题}
+% \end{syntax}
+%
+% 可见与 \cs{chapter} 相比，它多了一个必选参数用于接受 \meta{英文目录的标题}。
+% 于是，上面这个例子可以这样简化：
+% \begin{latex}
+%   \bichapter{绪论}{Intorduciton}
+%       \bisection{基本概念}{Basic Conceptions}
+%       \bisection{本章小结}{Chapter Summary}
+%   \bichapter{实验}{The Experiments}
+% \end{latex}
+%
+% 但这也有少许弊端：一些编辑器会检测代码中诸如 \cs{section} 等章节结构命令，
+% 以此在编辑窗口中显示论文的结构树；但是，如果使用了 \cs{bisection} 等命令之后，
+% 就可能无法正常显示了。
+%
+% \DescribeMacro{\tableofcontentsEN}
+% 然后，使用 \cs{tableofcontentsEN} 生成英文目录项。
+% 类似中文目录，英文目录需要经过两次编译才能正确生成。
+%
+% \subsubsection{双语图表注}\label{subsubsec:bicaption}
+% \DescribeMacro{\bicaption}
+% \begin{syntax}{bicaption}
+%     \marg{中文长图表注}\marg{英文长图表注}
+% \end{syntax}
+%
+% 该命令仅适用于硕博论文中。
+%
+% 具体的用法很简单：在 \env{figure} 环境中使用 \cs{bicaption} 代替 \cs{caption}，如：
+% \begin{latex}
+%   \begin{figure}
+%       \centering
+%       \includegraphics[<options>]{My-Fig}
+%       \bicaption{中文标题}{English Title}
+%       \label{fig:my-fig}
+%   \end{figure}
+% \end{latex}
+%
+% \subsubsection{设计图纸}\label{subsubsec:dfigure}
+% 这些命令和环境仅适用于本科论文中。
+%
+% 关于一般的插图请看示例文件，这里介绍关于“设计图纸”及编目的方法。
+%
+% 由于《本科生规范》未对所谓“设计图纸”详细说明，因此模板设计了两种编目方式：
+% 一是加入主目录，另一种是单独生成目录。
+%
+% \DescribeEnv{dfigure}
+% 设计图纸的计数器是独立于一般插图的。
+% 因此，无论编目方式如何，
+% 都需要使用 \env{dfigure} 而非 \env{figure} 环境，来为一张插图指定为“设计图纸”。
+%
+% \DescribeMacro{\dcaption}
+% 如果需要编入主目录，需要使用 \cs{dcaption} 代替 \cs{caption}，如：
+% \begin{latex}
+%   \begin{dfigure}
+%       \centering
+%       \includegraphics[<options>]{My-Fig}
+%       \dcaption{设计图纸示例}
+%   \end{dfigure}
+% \end{latex}
+% 也就是说，\cs{dcaption} 命令用于添加编号与标题的同时将它编入主目录。
+%
+% \DescribeMacro{\listofdesignfigures}
+% 而独立目录也很简单：只需要 \env{dfigure} 指定为“设计图纸”，
+% 并在主目录（\cs{tableofcontents}）后跟一个 \cs{listofdesignfigures} 即可。参见~\ref{subsubsec:content}。
+%
+% \subsubsection{结论}
+% \DescribeEnv{conclusion}
+% 该环境仅适用于本科论文中。
+%
+% 结论部分的源文件位于 \file{chapter/conclusion.tex}。该环境与前言相似，没有章的编号。
+% 但如果希望把“结论”编入章节，如“第五章\hspace{\ccwd}结论”，
+% 那么就不必使用 \env{conclusion} 环境，像其他章节一样使用 \cs{chapter} 就可以了。
+% \begin{latex}
+%   \begin{conclusion}
+%      本文的结论有什么？
+%   \end{conclusion}
+% \end{latex}
+%
+% \subsubsection{参考文献}\label{subsubsec:bib}
+% \DescribeMacro{\cite}
+% \DescribeMacro{\inlinecite}
+% \DescribeMacro{\nocite}
+% \begin{syntax}{cite}
+%    \marg{CiteKey}
+% \end{syntax}
+% \qquad
+% \begin{syntax}{inlinecite}
+%    \marg{CiteKey}
+% \end{syntax}
+%
+% 模板使用 \BibTeX 来实现参考文献的引用。
+% 一般情况下，使用 \cs{cite} 实现上标、方括号按“顺序编码制”引用参考文献；
+% 而 \cs{inlinecite} 可实现行间引用，适合某些特殊情况使用；
+% 此外，\cs{nocite}\marg{CiteKey} 则指明不在正文中引用但仍需要列出的参考文献，一般不使用。
+% 在同一处引用多个文献时，应将各篇文献的引用标签一同写在参数里，
+% 并以西文逗号“,”分隔每个 \meta{CiteKey}，如：
+% \begin{latex}
+%   ……多喝热水。\cite{bib1, bib2}
+% \end{latex}
+%
+% 至于参考文献列表，主文件中以下列命令来生成符合格式要求的参考文献章节：
+% \begin{latex}
+%   \bibliographystyle{gbt7714-numerical}
+%   \bibliography{thesisbib.bib}
+% \end{latex}
+%
+% 为罗列各条参考文献，
+% 需要在 \file{thesisbib.bib} 文件中增删需引用的文献数据。
+% 在文章中相应位置引用文献后，需执行一次全编译以确保正确显示。
+%
+% \emph{注意：至少需要引用一篇文献，否则执行完全编译可能会引起编译错误。}
+%
+%
+% \subsection{后置部分}\label{subsec:backmatter}
+% \subsubsection{翻译}
+% \DescribeEnv{translation}
+% 该环境仅适用于本科论文中。
+%
+% 文献翻译的源文件位于 \file{chapter/translation.tex}，
+% 使用 \env{translation} 环境，原文和翻译都要有。
+%
+% \emph{注意：部分学院要求该部分作为单独的一份文件，此时可直接删除该文件并删除主文件的插入代码。}
+% \begin{latex}
+%   \begin{translation}
+%      English.
+%
+%      汉语。
+%   \end{translation}
+% \end{latex}
+%
+% \subsubsection{附录}\label{subsubsec:app}
+% \DescribeMacro{\appendix}
+% \cs{appendix} 命令作为附录部分的开始。
+% 与正文类似，只需往 \file{chapter/app1.tex} 等加入内容即可。
+% \begin{latex}
+%   \appendix
+%   \chapter{...}
+%   ...
+% \end{latex}
+%
+% \subsubsection{致谢}
+% \DescribeEnv{acknowledgement}
+% 致谢部分的源文件位于 \file{chapter/acknowledgement.tex}，
+% 使用 \env{acknowledgement} 环境，
+% 往里面写入感谢的话就可以啦。
+% \begin{latex}
+%   \begin{acknowledgement}
+%       谢谢你！
+%   \end{acknowledgement}
+% \end{latex}
+%
+% \emph{注意：“致谢”在本科论文中置于“附录”之前，与研究生论文有所差异。}
+%
+% \subsubsection{成果与简介}
+% \DescribeEnv{achievements}
+% \DescribeEnv{resume}
+% 这些环境仅适用于研究生论文中。
+%
+% 该部分包括“作者攻读学位期间发表的学术论文及科研成果目录”与“作者和导师简介”，
+% 源文件位于 \file{chapter/resume.tex}。示例文档中已有现成例子，推荐直接修改。
+%
+% \DescribeEnv{bibenumerate}
+% 其中可以使用 \env{bibenumerate} 环境来生成带有方括号的列表，适合罗列文献。
+%
+% \begin{latex}
+%   \begin{achievements}
+%       \section*{发表及已接受的论文：}
+%       \section*{成果及专利：}
+%   \end{achievements}
+%   \begin{resume}
+%      \section*{作者简介：}
+%      \section*{导师简介：}
+%   \end{resume}
+% \end{latex}
+%
+%
+%
+% \StopEventually{\PrintChanges\PrintIndex}
+%
+% \clearpage
+% \section{实现细节}\label{sec:implementation}
+% \subsection{文档类信息与选项}
+%    \begin{macrocode}
+%<*class>
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesClass{cqutthesis}[2024/09/10 v2.0 CQUT Thesis Template]
+%    \end{macrocode}
+%
+% 装载 \pkg{ifxetex} 宏包，并通过 \cs{RequireXeTeX} 命令检查编译命令。
+% 若未使用 \XeTeX\ 或 \XeLaTeX\ 将强制中止编译并发出警告。
+%    \begin{macrocode}
+\RequirePackage{ifxetex}
+\RequireXeTeX
+%    \end{macrocode}
+%
+% 定义选项和族。
+%    \begin{macrocode}
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+    family   = cqut,
+    prefix   = cqut@,
+    setkeys  = \kvsetkeys,
+}
+%    \end{macrocode}
+%
+% 定义载入文档类时的选项：
+%
+% 模板类型：本科、硕士、博士；
+%    \begin{macrocode}
+\newif\ifcqut@bachelor\cqut@bachelorfalse
+\newif\ifcqut@master\cqut@masterfalse
+\newif\ifcqut@doctor\cqut@doctorfalse
+\define@key{cqut}{type}{\expandafter\csname cqut@#1true\endcsname}
+%    \end{macrocode}
+%
+% 是否为最终提交版本，默认否；
+%    \begin{macrocode}
+\DeclareBoolOption[false]{submit}
+%    \end{macrocode}
+%
+% 每章从任意页或奇数页开始，默认 openright，即每章只从奇数页开始；
+%    \begin{macrocode}
+\DeclareBoolOption[false]{openany}
+\DeclareComplementaryOption{openright}{openany}
+%    \end{macrocode}
+%
+% 是否开启模板调试器，默认否。
+%    \begin{macrocode}
+\DeclareBoolOption[false]{debugger}
+%    \end{macrocode}
+%
+% 将文档类多余的选项传递给 \pkg{ctexbook} 文档类，并加载相应选项的文档类。
+%    \begin{macrocode}
+\DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
+\ProcessKeyvalOptions*
+%    \end{macrocode}
+%
+% 由于 \cls{ctexbook} 将会调用 \pkg{xeCJK} 宏包来配置字体，这里使用 \opt{quiet}
+% 选项关闭因自定义字体（后述）而产生的警告。
+% 最后根据用户选项，加载相应选项的 \cls{ctexbook} 文档类。
+%    \begin{macrocode}
+\PassOptionsToPackage{quiet}{xeCJK}
+\ifcqut@openany\LoadClass[zihao=-4,UTF8,oneside]{ctexbook}
+\else\LoadClass[zihao=-4,UTF8,openright]{ctexbook}\fi
+%    \end{macrocode}
+%
+% 必须指定本、硕、博中的一种类型。
+%    \begin{macrocode}
+\ifcqut@bachelor\relax\else
+    \ifcqut@master\relax\else
+        \ifcqut@doctor\relax\else
+            \ClassError{cqutthesis}{%
+                Specified thesis type is obligatory: \MessageBreak%
+                type = [ bachelor | master | doctor ]%
+            }{}
+\fi\fi\fi
+%    \end{macrocode}
+%
+% \begin{macro}{\cqut@def@key}
+% 定义用于定义论文相关信息的内部命令。例如：
+% \begin{latex}
+%   \cqut@def@key{ChineseTitle}
+% \end{latex}
+% 相当于：
+% \begin{latex}
+%   \newcommand{\ChineseTitle}[1]{\newcommand{\cqut@ChineseTitle}{#1}}
+%   \define@key{cqut}{ChineseTitle}{\ChineseTitle{#1}}
+% \end{latex}
+%
+% 这个命令我们让它能接受两个参数，其中第一个必选参数为选项的键名称，后一个可选参数则是选项的默认值。
+%    \begin{macrocode}
+\NewDocumentCommand{\cqut@def@key}{ m o }{
+    \@namedef{#1}##1{\@namedef{cqut@#1}{##1}}
+    \define@key{cqut}{#1}[#2]{\@nameuse{#1}{##1}}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\cqutsetup}
+% 定义 \cs{cqutsetup} 命令作为接口，方便在主文件中设置。
+%    \begin{macrocode}
+\newcommand{\cqutsetup}[1]{\kvsetkeys{cqut}{#1}}
+\cqut@def@key{ChineseTitle}
+\cqut@def@key{EnglishTitle}
+\cqut@def@key{ChineseTitleLineA}
+\cqut@def@key{ChineseTitleLineB}
+\cqut@def@key{ChineseTitle}
+\cqut@def@key{author}
+\cqut@def@key{studentid}
+\cqut@def@key{supervisor}
+\cqut@def@key{major}
+\cqut@def@key{date}[\the\year-\two@digits{\month}-\two@digits{\day}]
+\ifcqut@bachelor
+    \cqut@def@key{school}
+    \cqut@def@key{class}
+    \cqut@def@key{msupervisor}
+\fi
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\cqut@def@sep@key}
+% 对于 \opt{ChineseKeywords} 等键接受的是以西文逗号“,”分隔的值，上面的定义就不合适了。
+% 所以要对值做分隔。相比 \cs{cqut@def@key} 这里的后一个参数为必选项，即为在论文中的分隔符。
+% 此处的宏展开可参考\href{https://www.zhihu.com/question/26916597}{这篇讨论}。
+%    \begin{macrocode}
+\newcommand{\cqut@def@sep@key}[2]{%
+    \@namedef{#1}##1{%
+        \@namedef{cqut@#1}{}%
+        \@for\reserved@a:=##1\do{
+            \expandafter\ifx\csname cqut@#1\endcsname\@empty\else
+            \expandafter\g@addto@macro\csname cqut@#1\endcsname{#2}\fi
+            \expandafter\expandafter\expandafter\g@addto@macro%
+            \expandafter\csname cqut@#1\expandafter\endcsname%
+            \expandafter{\reserved@a}
+        }
+    }
+    \define@key{cqut}{#1}{\@nameuse{#1}{##1}}%
+}
+\cqut@def@sep@key{ChineseKeywords}{\cqut@ChineseKeywords@sep}
+\cqut@def@sep@key{EnglishKeywords}{\cqut@EnglishKeywords@sep}
+%    \end{macrocode}
+% \end{macro}
+% \subsection{载入宏包}
+%
+% 用于调整纸张与页面，这两个宏包提供了方便的命令来设置页面边距和页眉页脚。
+%    \begin{macrocode}
+\RequirePackage{geometry,fancyhdr}
+%    \end{macrocode}
+%
+% 自定义目录格式。
+%    \begin{macrocode}
+\RequirePackage{titletoc}
+%    \end{macrocode}
+%
+% \AmS{}系列宏包，包括：
+% \begin{enumerate}
+%    \item \pkg{amsmath}，提供了各种数学方面的增强型命令，以改进包含数学公式的文档结构；
+%    \item \pkg{amsthm}，提供了定理类环境样式规范；
+%    \item \pkg{amssymb}，提供各种数学符号。
+% \end{enumerate}
+% 除此之外，载入 \pkg{unicode-math} 宏包以配置数学字体。
+%    \begin{macrocode}
+\RequirePackage{amsmath,amsthm,amssymb,unicode-math}
+%    \end{macrocode}
+%
+% 这两个宏包最重要的用途是排版本科的第五级标题。前者用于提供带圈序号，而后者提供了方便的格式控制。
+%    \begin{macrocode}
+\RequirePackage{pifont,enumitem}
+%    \end{macrocode}
+%
+% 一个适合排版含数值和单位的物理量的宏包，它也能提供在表格中按小数点竖直对齐的方法。
+%    \begin{macrocode}
+\RequirePackage{siunitx}
+%    \end{macrocode}
+%
+% 关于化学式排版的宏包有很多，但这里载入 \pkg{mhchem}。
+% 它容易上手，偏向于无机和分析化学（方程）式的排版。
+% 至于有机化学的结构式等，使用图片插入可能是一个更好的选择；若时间充裕可学习如 \pkg{chemfig} 等宏包。
+%    \begin{macrocode}
+\RequirePackage[version = 4]{mhchem}
+%    \end{macrocode}
+%
+% 浮动体系列宏包，控制表格、插图等浮动体及标签格式。
+%    \begin{macrocode}
+\RequirePackage{float}
+\RequirePackage{longtable,threeparttable,tabularx,multirow,booktabs}
+\RequirePackage{graphicx}
+\RequirePackage[labelformat = simple]{subcaption}
+\RequirePackage[format=hang]{caption}
+\RequirePackage{bicaption}
+%    \end{macrocode}
+%
+% 一个用于绘图的宏包，模板里用于绘制脚注外的圆圈。
+%    \begin{macrocode}
+\RequirePackage{tikz}
+%    \end{macrocode}
+%
+% 绘制封面的一些宏包。\pkg{calc} 能够方便地计算文本长度；
+% \pkg{textpos} 配合 \pkg{tikz}，这样就能在页面的任何地方作画了。
+% 另外， 在 ctex 宏集 2.5 版本之后需要手动载入\pkg{xeCJKfntef} 。
+%    \begin{macrocode}
+\RequirePackage{calc}
+\RequirePackage[absolute,overlay]{textpos}
+\RequirePackage{xeCJKfntef}
+%    \end{macrocode}
+%
+% 代码块环境。
+%    \begin{macrocode}
+\RequirePackage{listings}
+%    \end{macrocode}
+%
+% 该宏包提供了符合要求的“参考文献”章节中文献的编排格式。
+% 这里的选项会传递至 \pkg{natbib}，从而在正文中能实现数字、上标、方括号的引用模式。
+%    \begin{macrocode}
+\RequirePackage[sort&compress]{gbt7714}
+%    \end{macrocode}
+%
+% 为了方便查看，模板将以彩色标明超链接和代码块中的关键字。
+%    \begin{macrocode}
+\RequirePackage{xcolor}
+%    \end{macrocode}
+%
+% 用于插入PDF文件的宏包。可以插入封面、声明页（因为二者需要签字）等扫描或不方便排版的PDF文件。
+%    \begin{macrocode}
+\RequirePackage{pdfpages}
+%    \end{macrocode}
+%
+% \pkg{footmisc} 宏包的选项将脚注的位置固定在页面底端，且跨页重置计数。
+%    \begin{macrocode}
+\RequirePackage[bottom,perpage]{footmisc}
+%    \end{macrocode}
+%
+% 命令补丁，用于便捷地修改一些复杂命令，而无需重新定义之。
+%    \begin{macrocode}
+\RequirePackage{xpatch}
+%    \end{macrocode}
+%
+% 判断语句。
+%    \begin{macrocode}
+\RequirePackage{xifthen}
+%    \end{macrocode}
+%
+% 在页面画上标尺、边框线，和标注行号。仅当开启调试时。
+%    \begin{macrocode}
+\ifcqut@debugger
+    \RequirePackage[color=blue,type=upperleft,showframe,hshift=2.7cm,vshift=3.5cm]{fgruler}
+    \RequirePackage[pagewise]{lineno}
+\fi
+%    \end{macrocode}
+%
+% 实现交叉引用与超链接。
+%    \begin{macrocode}
+\RequirePackage{hyperref}
+%    \end{macrocode}
+%
+% \subsection{字体配置}
+% \begin{macro}{\cqut@fontsetval}
+% 首先来设置中文的字体。在 \pkg{ctex} 宏集中的 \cs{g\_\_ctex\_fontset\_tl} 存储着选项 \opt{fontset} 的值。
+% 模板尽可能避免使用 \LaTeX 3 语法，所以先用一个 \cs{cqut@fontsetval} 来保存它。
+%    \begin{macrocode}
+\newcommand\cqut@fontsetval{\csname g__ctex_fontset_tl\endcsname}
+%    \end{macrocode}
+% \end{macro}
+%
+% 根据\cs{cqut@fontsetval} 的值，分别设置不同的字体。
+%
+% 在 Windows 系统下，需要对中易宋体、中易黑体开启“伪粗”和“伪斜”，并设置相关系数。
+%    \begin{macrocode}
+\ifthenelse{\equal{\cqut@fontsetval}{windows}}{
+    \xeCJKsetup{EmboldenFactor=2.2,SlantFactor=0.2}
+    \setCJKmainfont{SimSun}[AutoFakeBold,AutoFakeSlant]
+    \setCJKsansfont{SimHei}[AutoFakeBold]
+}
+%    \end{macrocode}
+% 而在非 Windows 系统下，则由 \pkg{ctex} 宏集自动检测环境并保留其默认设置，
+% 同时警告所使用的字体与《规范》（即默认设置）存在不同。
+%    \begin{macrocode}
+{
+    \ClassWarning{cqutthesis}{%
+        The fonts differ to the default.\MessageBreak%
+        Use fontset = windows to correct.%
+    }
+}
+%    \end{macrocode}
+%
+% \begin{macro}{\bfsong}
+% 因设置中易宋体开启“伪粗体”，使用 \cs{bfseries} 将产生加粗的效果，
+% 这与一般的 \LaTeX\ 常识是相悖的。
+% 因此模板提供了更明确的命令 \cs{bfsong}。
+%    \begin{macrocode}
+\newcommand{\bfsong}{\bfseries}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\bfhei}
+%
+% 对于黑体同理。
+% 此外要注意：模板将 \opt{fontset = windows} 预设的无衬线字体（微软雅黑）改为了中易黑体。
+%    \begin{macrocode}
+\newcommand{\bfhei}{\sffamily\bfseries}
+%    \end{macrocode}
+% \end{macro}
+%
+% 其次，对于西文，全部统一设置为 Times New Roman，以尽可能避免格式审查问题。
+%    \begin{macrocode}
+\setmainfont{Times New Roman}
+\setsansfont{Times New Roman}
+\setmonofont{Times New Roman}
+%    \end{macrocode}
+%
+% 设置数学公式中的字体。
+%    \begin{macrocode}
+\IfFontExistsTF{LibertinusMath-Regular.otf}{%
+    \setmathfont{latinmodern-math.otf}
+    \setmathfont[%
+        range = {%
+            up/{latin,Latin,num},
+            it/{latin,Latin,greek},
+            bfit/{latin,Latin},
+        }
+    ]{LibertinusMath-Regular.otf}
+}{}
+%    \end{macrocode}
+%
+% 指定 Unicode 中带圈数字 \symbol{"2460}--\symbol{"2469} 使用中文字体。
+%    \begin{macrocode}
+\xeCJKDeclareCharClass{CJK}{"2460->"2469}
+%    \end{macrocode}
+%
+% 完成配置后，定义文中各元素的字体样式。
+%
+% 页眉与页脚。
+%    \begin{macrocode}
+\newcommand{\cqut@headfont}{\zihao{-5}\songti}
+\newcommand{\cqut@footfont}{\zihao{-5}\songti}
+%    \end{macrocode}
+%
+% 诚信声明（本科）或论文原创性声明和授权声明（硕博）。
+%    \begin{macrocode}
+\ifcqut@bachelor
+    \newcommand{\cqut@dcl@titlefont}{\zihao{3}\songti}
+    \newcommand{\cqut@dcl@ideclarefont}{\zihao{4}\songti}
+\else
+    \newcommand{\cqut@dcl@titlefont}{\zihao{4}\bfseries}
+    \newcommand{\cqut@dcl@textfont}{\zihao{4}\mdseries}
+    \newcommand{\cqut@auth@titlefont}{\zihao{4}\bfseries}
+    \newcommand{\cqut@auth@textfont}{\zihao{4}\mdseries}
+\fi
+%    \end{macrocode}
+%
+% 中英文摘要。
+% 这里的 \cs{CJKfamily+} 命令来自于 \pkg{xeCJK} 宏包，用于切换字体族：
+% 当参数为空时，则使用当前的 CJK 字体族，且对所有字符类生效。
+%    \begin{macrocode}
+\ifcqut@bachelor
+    \newcommand{\cqut@abs@titfont}{\zihao{3}\bfsong}
+    \newcommand{\cqut@abs@infofont}{\zihao{5}\mdseries}
+    \newcommand{\cqut@abs@absfont}{\zihao{4}\songti}
+    \newcommand{\cqut@keywordsfont}{\zihao{4}\heiti\CJKfamily+{}}
+    \newcommand{\cqut@abs@titfonten}{\zihao{3}\bfseries}
+    \newcommand{\cqut@abs@absfonten}{\zihao{4}\songti}
+    \newcommand{\cqut@keywordsfonten}{\zihao{4}\heiti\CJKfamily+{}}
+\else
+    \newcommand{\cqut@abs@titfont}{\zihao{3}\heiti}
+    \newcommand{\cqut@abs@absfont}{\zihao{-3}\heiti}
+    \newcommand{\cqut@abs@textfont}{\zihao{4}\songti}
+    \newcommand{\cqut@keywords@titfont}{\zihao{4}\heiti}
+    \newcommand{\cqut@keywords@font}{\zihao{4}\songti}
+    \newcommand{\cqut@abs@titfonten}{\zihao{3}\bfseries}
+    \newcommand{\cqut@abs@absfonten}{\zihao{-3}\bfseries}
+    \newcommand{\cqut@keywords@titfonten}{\zihao{4}\bfseries}
+    \newcommand{\cqut@keywords@fonten}{\zihao{4}\mdseries}
+\fi
+%    \end{macrocode}
+%
+% 中英文目录、设计图纸目录标题和目录中的各级标题。
+%    \begin{macrocode}
+\ifcqut@bachelor
+    \newcommand{\cqut@toc@tocfont}{\zihao{4}\mdseries\heiti}
+\else
+    \newcommand{\cqut@toc@tocfont}{\zihao{3}\heiti}
+\fi
+\newcommand{\cqut@toc@chapfont}{\zihao{4}\heiti}
+\newcommand{\cqut@toc@secfont}{\zihao{4}\songti}
+\newcommand{\cqut@toc@ssecfont}{\zihao{4}\songti}
+\newcommand{\cqut@toc@sssecfont}{\zihao{-4}\songti}
+\newcommand{\cqut@toc@dsgfigfont}{\cqut@toc@ssecfont}
+\newcommand{\cqut@toce@chapfont}{\zihao{4}\bfseries}
+%    \end{macrocode}
+%
+% 正文的各级标题。
+%    \begin{macrocode}
+\ifcqut@bachelor
+    \newcommand{\cqut@chapfont}{\zihao{-3}\bfsong\centering}
+    \newcommand{\cqut@secfont}{\zihao{-3}\bfsong\centering}
+    \newcommand{\cqut@ssecfont}{\zihao{-4}\bfsong\raggedright}
+    \newcommand{\cqut@sssecfont}{\zihao{-4}\songti}
+\else
+    \newcommand{\cqut@chapfont}{\zihao{3}\heiti\centering}
+    \newcommand{\cqut@secfont}{\zihao{4}\heiti\raggedright}
+    \newcommand{\cqut@ssecfont}{\zihao{-4}\heiti\raggedright}
+    \newcommand{\cqut@sssecfont}{\cqut@ssecfont}
+\fi
+%    \end{macrocode}
+%
+% 浮动体（包括插图和表格）内容、编号和标题。
+%    \begin{macrocode}
+\newcommand{\cqut@floatfont}{\zihao{5}}
+\newcommand{\cqut@float@captionfont}{\zihao{5}\mdseries}
+\newcommand{\cqut@float@labelfont}{\zihao{5}\mdseries}
+%    \end{macrocode}
+%
+% 代码块。根据是否开启 \opt{submit} 选项，设置关键字、注释的颜色。
+% 如果未开启，关键字将会使用深蓝色，注释会使用深灰色。
+%    \begin{macrocode}
+\newcommand{\cqut@codefont}{\ttfamily\songti\zihao{5}}
+\newcommand{\cqut@codecomfont}{%
+    \ttfamily\slshape
+    \ifcqut@submit\relax\else\color{gray!80!black}\fi}
+\newcommand{\cqut@codekeyfont}{%
+    \ttfamily\bfseries
+    \ifcqut@submit\relax\else\color{blue!80!black}\fi}
+%    \end{macrocode}
+%
+%
+% \subsection{常量设置}
+%    \begin{macrocode}
+\ifcqut@bachelor
+    \newcommand\cqut@headtext{重庆理工大学毕业设计（论文）}
+    \newcommand\cqut@foottext{\thepage}
+    \newcommand\cqut@dcl@title{诚信声明}
+    \newcommand\cqut@dcl@ideclare{本人声明：}
+    \newcommand\cqut@dcl@text{
+        所呈交的学位论文是本人在导师的指导下独立进行研究工作所取得的成果。
+        据我所知，除文中已经注明引用的内容外，本论文不包含任何其他个人或集体
+        已经发表或撰写过的研究成果，也不包含为获得重庆理工大学或其它教育机构
+        的学位或证书而使用过的材料。对论文所涉及的研究工作做出贡献的其他个人
+        和集体，均已在文中以明确方式标明或致谢。本人完全意识到本声明的法律
+        结果由本人承担。
+    }
+    \newcommand\cqut@dcl@sign{本人签名：\hspace{14em}年\hspace{2.5em}月\hspace{2.5em}日}
+    \newcommand\cqut@task@title{本科生毕业设计（论文）任务书}
+    \newcommand\cqut@task@pdf{任务书}
+    \newcommand\cqut@task@ChineseTitle{设计（论文）题目：}
+    \newcommand\cqut@task@school{学院：}
+    \newcommand\cqut@task@major{专业：}
+    \newcommand\cqut@task@class{班级：}
+    \newcommand\cqut@task@student{学生：}
+    \newcommand\cqut@task@supervisor{指导教师（含职称）：}
+    \newcommand\cqut@task@msupervisor{专业负责人：}
+    \newcommand\cqut@task@itema{1.设计（论文）的主要任务及目标}
+    \newcommand\cqut@task@itemb{2.设计（论文）的基本要求和内容}
+    \newcommand\cqut@task@itemc{3.主要参考文献}
+    \newcommand\cqut@task@itemd{4.进度安排}
+    \newcommand\cqut@cabstract@title{摘要}
+    \newcommand\cqut@eabstract@title{ABSTRACT}
+    \newcommand\cqut@ChineseKeywords@title{关键词：}
+    \newcommand\cqut@EnglishKeywords@title{Keywords:~}
+    \newcommand\cqut@ChineseKeywords@sep{\quad}
+    \newcommand\cqut@EnglishKeywords@sep{; }
+    \newcommand\cqut@supervisor@title{指导教师：}
+    \newcommand\cqut@content@title{目\hspace{\ccwd}录}
+    \newcommand\cqut@dfigurename{设计图纸}
+    \newcommand\cqut@dfigure@content@title{设计图纸目录}
+    \newcommand\cqut@foreword@title{前言}
+    \newcommand\cqut@concl@title{结论}
+    \newcommand\cqut@trans@title{翻译}
+    \newcommand\cqut@ack@title{致谢}
+    \newcommand\cqut@deno@title{符号说明}
+    \renewcommand\lstlistingname{代码}
+\else
+    \newcommand\cqut@headtext{\leftmark}
+    \newcommand\cqut@foottext{\thepage}
+    \newcommand\cqut@dcl@title{重庆理工大学学位论文原创性声明}
+    \newcommand\cqut@dcl@text{
+        本人郑重声明：所呈交的学位论文，是本人在导师的指导下，独立
+        进行研究工作所取得的成果。除文中已经注明引用的内容外，本论
+        文不含任何其他个人或集体已经发表或撰写过的作品成果。对本文
+        的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。
+        本人完全意识到本声明的法律结果由本人承担。
+    }
+    \newcommand\cqut@auth@title{关于论文使用授权的说明}
+    \newcommand\cqut@auth@text{
+        学位论文作者完全了解重庆理工大学有关保留和使用学位论文的规定，
+        即：研究生在校攻读学位期间论文工作的知识产权单位属重庆理工大学。
+        学校有权保留并向国家有关部门或机构送交论文的复印件和磁盘，允许
+        学位论文被查阅和借阅；学校可以公布学位论文的全部或部分内容，
+        可以允许采用影印、缩印或其它复制手段保存、汇编学位论文。
+
+        $\Box$ 论文暂不公开（或保密）注释：本学位论文属于暂不公开
+        （或保密）范围，在\rule{1.5em}{.4pt}年解密后适用本授权书。
+
+        $\Box$ 非暂不公开（或保密）论文注释：本学位论文不属于暂不公开
+        （或保密）范围，适用本授权书。
+    }
+    \newcommand\cqut@dcl@pdf{版权页}
+    \newcommand\cqut@sign@author{作者签名：\rule{7em}{.4pt}\qquad{日期：}\rule{7em}{.4pt}}
+    \newcommand\cqut@sign@supervisor{导师签名：\rule{7em}{.4pt}\qquad{日期：}\rule{7em}{.4pt}}
+    \newcommand\cqut@cabstract@title{摘\hspace{\ccwd}要}
+    \newcommand\cqut@eabstract@title{ABSTRACT}
+    \newcommand\cqut@ChineseKeywords@title{关键词：}
+    \newcommand\cqut@EnglishKeywords@title{KEY WORDS:~}
+    \newcommand\cqut@ChineseKeywords@sep{，}
+    \newcommand\cqut@EnglishKeywords@sep{,~}
+    \newcommand\cqut@content@title{目\hspace{\ccwd}录}
+    \newcommand\cqut@econtent@chapter{Chapter~}
+    \newcommand\cqut@econtentsname{Contents}
+    \newcommand\cqut@deno@title{符号和缩略词说明}
+    \newcommand\cqut@ack@title{致谢}
+    \newcommand\cqut@eack@title{Acknowledgement}
+    \newcommand\cqut@achi@title{研究成果及发表的学术论文}
+    \newcommand\cqut@eachi@title{Research Results and Published Academic Papaers}
+    \newcommand\cqut@resu@title{作者及导师简介}
+    \newcommand\cqut@eresu@title{About the Author}
+    \newcommand\equationname{式}
+    \newcommand\cqut@bitable@name{Table}
+    \newcommand\cqut@bifigure@name{Figure}
+    \newcommand\cqut@ebib@title{Bibliography}
+    \renewcommand\lstlistingname{代码}
+\fi
+%    \end{macrocode}
+%
+% \subsection{页面设置}
+% \subsubsection{纸张与边距}
+% 使用 \pkg{geometry} 宏包设置各边距为：（单双页打印、本硕博相同）
+% 上 \SI{3.5}{cm}、下 \SI{2.6}{cm}、左右 \SI{2.7}{cm}，页眉 \SI{2.4}{cm}、页脚 \SI{2}{cm}。
+%    \begin{macrocode}
+\geometry{%
+    a4paper,nomarginpar,
+    top = 3.5cm, bottom = 2.6cm, left = 2.7cm, right = 2.7cm,
+    headheight = 1.1cm, footskip = 0.6cm,
+}
+%    \end{macrocode}
+%
+% \subsubsection{页眉和页脚}
+% 使用 \pkg{fancyhdr} 宏包设置页眉页脚的文字和线宽。
+%    \begin{macrocode}
+\fancypagestyle{plain}{%
+    \fancyhf{}
+    \fancyhead[C]{\cqut@headfont\cqut@headtext}
+    \fancyfoot[C]{\cqut@footfont\cqut@foottext}
+    \renewcommand\headrulewidth{0.6pt}
+    \renewcommand\footrulewidth{0pt}
+}
+\pagestyle{plain}
+%    \end{macrocode}
+%
+% \begin{macro}{\frontmatter}
+% 修改命令 \cs{frontmatter} ，仅将页码从小写罗马字母改为大写，用于“第一章”之前的部分。
+%    \begin{macrocode}
+\xpatchcmd{\frontmatter}
+    {\pagenumbering{roman}}
+    {\pagenumbering{Roman}}
+    {}{}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\cleardoublepage}
+% 修改命令 \cs{cleardoublepage}，使之能在插入一张完全空白页的同时
+% 保持页码的连续，适合章页右开的情况。
+%    \begin{macrocode}
+\xpatchcmd{\cleardoublepage}
+    {\newpage}
+    {\thispagestyle{empty}\newpage}
+    {}{}
+%    \end{macrocode}
+% \end{macro}
+%
+%% \subsection{封面}
+% 由于学校会统一印制封面，这里仅提供本科和硕博的一个参考实现。
+% 并且由于学校所给的参考封面每年都有细微的变动，由本模板所生成的封面上文字间距不能保证与参考一致。
+% 还请留心。
+%
+% 标尺，用于调试。手动取消注释来开启。
+%    \begin{macrocode}
+% \usepackage[unit=cm,type=upperleft,hshift=0cm,vshift=0cm]{fgruler}
+%    \end{macrocode}
+%
+% \begin{macro}{\cqut@title@ul}
+% 定义下划线命令，这里利用了 \pkg{calc} 宏包的 \cs{widthof} 命令，
+% 取 \cs{cqut@ChineseTitleLineA} （即首行标题）的长度，用以固定下划线的长度。
+% 文本末尾加一个 \cs{enspace} 会让横线右端稍长于最后一个文字，显得更美观一些。
+%    \begin{macrocode}
+\newcommand\cqut@title@ul[1]{%
+    \CJKunderline{\makebox[\widthof{\cqut@ChineseTitleLineA\enspace}][l]{#1}}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\cqut@major@ul}
+% 但是对于本科封面而言，“专业”“学生”“指导教师”与“题目”之间有一大段空白，
+% 可以看做相互独立的表格。因此，这里我们让横线的宽度取所填入专业文本的宽度。
+% 使用 \cs{quad} 会让横线右端长于最后一个文字更多一点，更贴合封面的参考样例。
+%    \begin{macrocode}
+\newcommand\cqut@major@ul[1]{%
+    \CJKunderline{\makebox[\widthof{\cqut@major\quad}][c]{#1}}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\cqut@format@date}
+% 日期格式处理，将输入的 \cs{cqut@date} 拆分。
+%    \begin{macrocode}
+\newcommand\cqut@format@date[1]{%
+    \edef\cqut@@date{\cqut@date}%
+    \def\cqut@@process@date##1-##2-##3\@nil{%
+        #1{##1}{##2}{##3}%
+    }%
+    \expandafter\cqut@@process@date\cqut@@date\@nil
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \cs{@zhdate} 命令接受三个数字。
+% 本科的日期要求比较简单，直接输出对应的数字即可。
+% 但是样例所给的数字前后有一些空白，我们用 \cs{makebox} 来定格它。
+%    \begin{macrocode}
+\newcommand\@zhdate[3]{%
+    \bfseries\zhkai
+    \ifcqut@bachelor
+        \zihao{4}
+        #1年\makebox[1.5em]{#2}月\makebox[1.5em]{#3}日
+%    \end{macrocode}
+%
+% 如果是硕博，则将“年”转换为中文数字串，“月”和“日”转换为中文数字；其中“年”中的 0 映射为“〇”而非“零”。
+%    \begin{macrocode}
+    \else
+        \Large\ziju{.1}%
+        日\hspace{1.5\ccwd}期：\zhdigits{#1}年\zhnumber{#2}月\zhnumber{#3}日%
+    \fi
+}
+%    \end{macrocode}
+%
+% \begin{macro}{\cqut@makecover}
+% 接下来是重头戏：定义 \cs{cqut@makecover} 命令来生成封面。
+%    \begin{macrocode}
+\newcommand{\cqut@makecover}{%
+%    \end{macrocode}
+%
+% 首先是页边距和页眉页脚。
+% 经过测量，各边距值比正文部分都要小；本科暂与硕博设置一致。
+%    \begin{macrocode}
+    \newgeometry{
+        top = 2.1cm, bottom = 2.2cm,
+        left = 2cm, right = 2cm,
+        headheight = 0cm, footskip = 0cm
+    }
+%    \end{macrocode}
+% 清空页眉、页脚。
+%    \begin{macrocode}
+    \thispagestyle{empty}
+%    \end{macrocode}
+%
+% 其次是字体。关于字体的检查和定义放在了文档命令 \cs{makecover} 的定义中。（见本节末尾）
+% 在这里，我们只开启伪粗体，并且应设置得比正文更粗一些。
+%    \begin{macrocode}
+    \xeCJKsetup{EmboldenFactor=2.3}
+%    \end{macrocode}
+%
+% 封面右上角的“单位代码”和“学号”，先分别设置格式。
+%    \begin{macrocode}
+    \begin{table}[h]
+        \raggedleft
+        \ifcqut@bachelor
+            \songti\zihao{5}
+        \else
+            \renewcommand{\arraystretch}{1.3}\large
+        \fi
+%    \end{macrocode}
+%
+% 用一个无线表格来排版文字。需要注意二者都要以中文字体来书写数字。
+% 注意本科封面的表格右端并不是严格顶头，所以这里空开两个字符的宽度。
+%    \begin{macrocode}
+        \begin{tabular}{l@{}l}
+            \ifcqut@bachelor%
+                班\hspace{2\ccwd}级&：\CJKfamily+{zhsong}\cqut@class\hspace*{2\ccwd}\\
+                学\hspace{2\ccwd}号&：\CJKfamily+{zhsong}\cqut@studentid\hspace*{2\ccwd}\\
+            \else%
+                \xbsong 单位代码 & ：\CJKfamily+{zhsong}\mbox{10010}\\
+                \xbsong 学\hspace{2\ccwd}号 & ：\CJKfamily+{zhsong}\mbox{\cqut@studentid}\\
+            \fi
+        \end{tabular}
+    \end{table}
+    \ifcqut@bachelor\vspace{3bp}\else\vspace{26bp}\fi
+%    \end{macrocode}
+%
+% 校徽与校名。前者是插图，后者是文字。
+% 需要注意，本科和硕博封面的“重庆理工大学”几个字的字距是有差别的。
+% 由于并未设置居中，所以本科还需要手动空一点距离让文本近似居于页面中央。
+%    \begin{macrocode}
+    \begin{minipage}[c][][c]{2.35cm}
+        \includegraphics[width = 2.35cm]{figure/CQUT-badge.pdf}
+    \end{minipage}
+    \qquad
+    \begin{minipage}[c][2.35cm][c]{9cm}
+        \xingkai
+        \ifcqut@bachelor
+            \ziju{0.1}\hspace*{0.8\ccwd}\zihao{-0}
+        \else
+            \ziju{-0.02}\zihao{0}
+        \fi
+        {重庆理工大学}
+    \end{minipage}
+    \ifcqut@bachelor\vspace{12bp}\else\vspace{18bp}\fi
+%    \end{macrocode}
+%
+% 标题。本科的标题中的“(论文)”使用了半角括号，字体使用 Times New Roman Bold。
+% 但按照排版规范，模板使用全角标点和对应的中文字体。
+% 对于这项更改，我们使用 \pkg{xeCJK} 里的命令来吃掉一点括号的空白。
+%
+% 注：\cs{punctstyle\{banjiao\}} 和 \cs{xeCJKsetup\{PunctStyle = banjiao\}} 和 \cs{ctexset\{punct = banjiao\}}是一样的。
+%    \begin{macrocode}
+    \begin{center}
+        \ifcqut@bachelor
+            \ziju{0.15}\xbsong\zihao{-0}\CJKfamily+{}{%
+            \punctstyle{banjiao}毕业设计（论文）% (论文)
+            }
+        \else%
+            %\ziju{-0.05}
+            \dbsong\fontsize{38bp}{60bp}\selectfont
+            \ifcqut@master{硕}\else{博}\fi{}士研究生学位论文
+        \fi
+    \end{center}
+%    \end{macrocode}
+%
+% 对于论文标题之下的部分，我们将本科和硕博分开设置。
+%
+% 本科封面有两条横贯页面的横线，位于纸张顶部向下 \SI{10}{\centi\metre} 左右，
+% 我们用 \pkg{textpos} 的 \env{textblock} 环境定位，用 \pkg{tikz} 将它们画出来。
+% 两条线的间距取 \SI{0.2}{\centi\metre}。
+%    \begin{macrocode}
+    \ifcqut@bachelor
+            \setlength{\TPHorizModule}{1cm}
+            \setlength{\TPVertModule}{1cm}
+            \begin{textblock}{0}(0,10)
+                \noindent%
+                \tikz[line width=1.2pt] \draw (0,0) -- (21,0) (0,0.2) -- (21,0.2);
+            \end{textblock}
+            \vspace{72bp}
+%    \end{macrocode}
+%
+% 接下来书写题目。先使用 \pkg{xeCJK} 的功能来禁用下划线的断点，并调整其粗细。
+%    \begin{macrocode}
+            \begin{center}
+                \xeCJKsetup{
+                    underline = {
+                        skip      = false,
+                        thickness = 1.4pt,
+                    }
+                }
+%    \end{macrocode}
+%
+% 然后是“题目”及其内容。
+% 题目需要手动断行，且长度控制在 \SI{36}{em} 以内。
+% 因表格本身的横线与文字间距较大，这里采用下划线的方式来划线。
+% 注意这里我们要判断题目是否有第二行（即 \cs{cqut@ChineseTitleLineB} 是否有值）
+% 来输出一行还是两行题目。
+%    \begin{macrocode}
+                \renewcommand{\arraystretch}{2}
+                \begin{tabular}{%
+                        >{\zihao{-2}\xbsong}l
+                        >{\zihao{3}\bfseries}l
+                }
+                    题\hspace{\ccwd}目  & \cqut@title@ul{\cqut@ChineseTitleLineA}\\
+                    \ifthenelse{\equal{\cqut@ChineseTitleLineB}{}}{\relax}{
+                                        & \cqut@title@ul{\cqut@ChineseTitleLineB}\\
+                    }
+                \end{tabular}
+                \vskip144bp\zihao{3}
+%    \end{macrocode}
+%
+% 使用一个表格来排版论文的信息，如前定义 \cs{cqut@major@ul} 所述，这里横线的宽度取“专业”内容的宽度。
+%    \begin{macrocode}
+                \begin{tabular}{
+                        >{\begin{CJKfilltwosides}[b]{4\ccwd}\xbsong}r%
+                            <{\end{CJKfilltwosides}}%
+                        @{}>{\enspace\zihao{4}\bfseries}l%
+                        <{\vspace{.2em}}%
+                    }
+                    专业     & \cqut@major@ul{\cqut@major}\\
+                    学生     & \cqut@major@ul{\cqut@author}\\
+                    指导教师 & \cqut@major@ul{\cqut@supervisor}\\
+                \end{tabular}
+            \end{center}
+%    \end{macrocode}
+%
+% 在页面底部书写日期。
+%    \begin{macrocode}
+            \vfill{%
+                \begin{center}%
+                    \cqut@format@date{\@zhdate}%
+                \end{center}%
+            }
+%    \end{macrocode}
+%
+%   硕博论文的处理方式与本科相似。
+%    \begin{macrocode}
+    \else
+        \vspace{76bp}
+        \begin{center}
+            \xeCJKsetup{
+                underline = {
+                    skip      = false,
+                    thickness = 1.2pt,
+                }
+            }
+            \renewcommand{\arraystretch}{2.7}
+            \begin{tabular}{
+                >{\fontsize{20}{36}\selectfont\begin{CJKfilltwosides}[b]{4\ccwd}\sffamily\bfseries}r%
+                <{\end{CJKfilltwosides}}%
+                @{}>{\enspace\zihao{3}\bfseries}l%
+                <{\vspace{.2em}}%
+            }
+                题目     & \cqut@title@ul{\cqut@ChineseTitleLineA}\\
+                \ifthenelse{\equal{\cqut@ChineseTitleLineB}{}}{\relax}{
+                                        & \cqut@title@ul{\cqut@ChineseTitleLineB}\\
+                }
+                专业     & \cqut@title@ul{\zihao{4}\cqut@major}\\
+                研究生   & \cqut@title@ul{\zihao{4}\cqut@author}\\
+                指导教师 & \cqut@title@ul{\zihao{4}\cqut@supervisor}\\
+            \end{tabular}
+        \end{center}
+        \vfill{%
+            \begin{center}%
+                \cqut@format@date{\@zhdate}%
+            \end{center}%
+        }
+    \fi
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\makecover}
+% 这里定义文档命令 \cs{makecover}，接受一个可选参数用于插入扫描页，否则调用 \cs{cqut@makecover} 生成封面。
+%    \begin{macrocode}
+\NewDocumentCommand{\makecover}{ o }{%
+    \hypertarget{cover}{}
+    \pdfbookmark{封面}{cover}
+    \IfNoValueTF{#1}{
+%    \end{macrocode}
+% 在不插入扫描页的情况下调用时，需要先检查字体存在情况。
+% 因为只有硕博论文封面才会用到方正大标宋，为简单起见，这里只检查方正小标宋。
+% 如果存在方正小标宋，则默认也存在方正大标宋、华文行楷和中易楷体，并定义上述所有字体。
+% 至于西文字体则不做设置，也就是说沿用模板默认的 Times New Roman。
+% 事实上该字体只会作用于本科封面的数字日期，除此之外的数字（如学号）使用中文字体。
+%    \begin{macrocode}
+        \IfFontExistsTF{FZXiaoBiaoSong-B05S}{%
+            \newCJKfontfamily[xbsong] \xbsong {FZXiaoBiaoSong-B05S}
+            \newCJKfontfamily[dbsong] \dbsong {FZDaBiaoSong-B06S}
+            \newCJKfontfamily[xingkai]\xingkai{STXingkai}
+            \newCJKfontfamily[zhkai]  \zhkai  {KaiTi} [AutoFakeBold]
+%    \end{macrocode}
+% 只有当存在方正小标宋时，令 \cs{makecover} 调用 \cs{cqut@makecover}，否则输出空白页。
+%    \begin{macrocode}
+            \cqut@makecover
+        }{
+            \cleardoublepage
+        }
+
+    }{%
+%    \end{macrocode}
+% 在选择插入扫描页的情况下（命令后跟了一个可选参数）则无需检查和设置字体，直接插入 PDF 文件即可。
+%    \begin{macrocode}
+        \includepdf[pages=-]{#1}
+    }
+%    \end{macrocode}
+% 输出封面完成后，页边距从封面中恢复。
+%    \begin{macrocode}
+\restoregeometry
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsection{前置部分}
+% \begin{macro}{\cqut@pdfmark}
+% 为了方便查看，模板将前置部分编入PDF书签，实现跳转。
+% 这里定义了一个命令用于简化代码。
+%    \begin{macrocode}
+\newcommand{\cqut@pdfmark}[2]{%
+    \hypertarget{#2}{}
+    \pdfbookmark{#1}{#2}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{声明页}
+% \begin{macro}{\cqut@makedeclare}
+% 本科为“诚信声明”，硕博为“原创性声明”与“使用授权说明”。这里定义不使用扫描页的命令。
+%    \begin{macrocode}
+\newcommand{\cqut@makedeclare}{
+    \ifcqut@bachelor
+        \centerline{\cqut@dcl@titlefont\cqut@dcl@title}\par\vspace{1em}
+        \leftline{\cqut@dcl@ideclarefont\cqut@dcl@ideclare}%
+        \cqut@dcl@text
+        \par\vspace{2em}\hfill{\cqut@dcl@sign}
+    \else{
+        \thispagestyle{empty}
+        \linespread{1.5534}
+        \setlength{\parskip}{15pt}
+        \centerline{\cqut@dcl@titlefont\cqut@dcl@title}
+        \par\indent\cqut@dcl@textfont\cqut@dcl@text
+        \par\indent\cqut@sign@author\\[30pt]
+        \centerline{\cqut@auth@titlefont\cqut@auth@title}
+        \par\indent\cqut@auth@textfont\cqut@auth@text
+        \par\indent\cqut@sign@author
+        \par\indent\cqut@sign@supervisor
+    }\fi
+    \clearpage\normalsize
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\makedeclare}
+% 定义一个带可选参数的命令 \cs{makedeclare}，可选参数为扫面页的相对路径；
+% 若不加参数则使用 \cs{cqut@makedeclare} 来插入文本。
+% 这里的 \opt{pages=-} 表示插入所有页面。
+%    \begin{macrocode}
+\NewDocumentCommand{\makedeclare}{ o }{%
+    \cqut@pdfmark{\ifcqut@bachelor\cqut@dcl@title\else\cqut@dcl@pdf\fi}{declare}
+    \IfNoValueTF{#1}{\cqut@makedeclare}{%
+        \includepdf[pages=-]{#1}
+    }
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{任务书}
+% \begin{environment}{taskbook}
+% 环境 \env{taskbook} 用于插入任务书部分，该部分排在诚信声明之后。
+% 如果环境后带星号，则生成的任务书清空页眉和页脚。
+%
+% 留意 \pkg{xparse} 宏包的 \cs{NewDocumentEnvironment} 还没法一次性定义带或不带星号的环境
+% ——比如 \env{tabular} 和 \env{tabular*}。
+%    \begin{macrocode}
+\ifcqut@bachelor
+    \NewDocumentEnvironment{taskbook}{ s }{%
+        \cleardoublepage%
+        \cqut@pdfmark{\cqut@task@pdf}{taskbook}%
+        \section*{\cqut@task@title}%
+        \IfBooleanTF{#1}{\pagestyle{empty}}{}%
+    }{\clearpage}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{macro}{\cqut@ul}
+% “任务书”开头部分的下划线。
+%    \begin{macrocode}
+    \NewDocumentCommand{\cqut@ul}{ o m }{\underline{\makebox[#1][c]{#2}}}
+%    \end{macrocode}
+% \end{macro}
+%
+% 排版“任务书”时，提供如下的命令和环境：
+% \begin{macro}{\taskinfo*}
+% 命令 \cs{taskinfo} 或 \cs{taskinfo*}：
+% 后者是学校样例的实现，但是由于换行、空位少造成书写不便，且不甚美观；
+% 而前者比后者多了一次换行且设置了文本和横线的对齐，适合文字较多时使用。
+%    \begin{macrocode}
+    \NewDocumentCommand\taskinfo{ s }{%
+        \noindent%
+        \begin{minipage}{\textwidth}%
+            \punctstyle{plain}\linespread{1.94}%
+                \cqut@task@ChineseTitle\cqut@ul[27em]{\cqut@ChineseTitle}\\[3pt]
+            \IfBooleanTF{#1}{% less lines break
+                \cqut@task@school\cqut@ul[10em]{\cqut@school}\quad
+                \cqut@task@major\cqut@ul[10em]{\cqut@major}\quad
+                \cqut@task@class\cqut@ul[5em]{\cqut@class}\\[3pt]
+                \cqut@task@student\cqut@ul[5em]{\cqut@author}\quad
+                \cqut@task@supervisor\cqut@ul[6em]{\cqut@supervisor}\quad
+                \cqut@task@msupervisor\cqut@ul[4em]{\cqut@msupervisor}%
+            }{% more lines break
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\taskinfo}
+% 多了一次换行，相比之下会更加整齐一些。
+%    \begin{macrocode}
+                \cqut@task@school\cqut@ul[15em]{\cqut@school}\qquad
+                \cqut@task@major\cqut@ul[13em]{\cqut@major}\\[3pt]
+                \cqut@task@class\cqut@ul[15em]{\cqut@class}\qquad
+                \cqut@task@student\cqut@ul[13em]{\cqut@author}\\[3pt]
+                \cqut@task@supervisor\cqut@ul[8em]{\cqut@supervisor}\qquad
+                \cqut@task@msupervisor\cqut@ul[10em]{\cqut@msupervisor}%
+            }
+        \end{minipage}\vspace{1.5em}
+    }
+%    \end{macrocode}
+% \end{macro}
+%
+% 命令 \cs{taskitem} ：用于排版任务书中“设计（论文）的主要任务及目标”等四项标题。
+% 该命令只能使用四次，超过则会报错且给予修正提示。
+%    \begin{macrocode}
+    \newcounter{taskitemcnt}
+    \newcommand{\cqut@taskitem}{%
+        \stepcounter{taskitemcnt}%
+        \ifcase\value{taskitemcnt}\relax\or%
+        {\cqut@task@itema}\or%
+        {\cqut@task@itemb}\or%
+        {\cqut@task@itemc}\or%
+        {\cqut@task@itemd}\else%
+        \ClassError{cqutthesis}{Too many \protect\taskitem\space used}%
+        {Keep \protect\taskitem\space no more than 4 times.}\fi
+    }
+%    \end{macrocode}
+% \begin{macro}{\taskitem}
+% 这里相比学校的样例，段前增加了一点空白。
+%    \begin{macrocode}
+    \newcommand{\taskitem}{\vspace{6pt}\noindent\cqut@taskitem\par}
+\fi
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{environment}{bibenumerate}
+% 定义 \env{bibenumerate} 环境：可以生成带有方括号、阿拉伯数字的列表。
+% 该命令可用于本科的“任务书”中罗列主要参考文献，
+% 亦可用于硕博“研究成果及发表的学术论文”中罗列发表的论文与专利。
+%    \begin{macrocode}
+\newenvironment{bibenumerate}{%
+    \begin{enumerate}[label={[\arabic*]},leftmargin=3em]
+}{\end{enumerate}}
+%    \end{macrocode}
+% \end{environment}
+%
+% \subsubsection{摘要}
+% \begin{environment}{cabstract}
+% 中文摘要，使用 \env{cabstract} 环境。
+%    \begin{macrocode}
+\ifcqut@bachelor
+    \newenvironment{cabstract}{%
+        \cleardoublepage
+        \cqut@pdfmark{\cqut@cabstract@title}{cabstract}
+        \begin{center}
+            \cqut@abs@titfont\cqut@ChineseTitle
+            \vskip22pt
+            \cqut@abs@infofont\cqut@author\quad%
+            \cqut@class\quad\cqut@studentid\quad%
+            \cqut@supervisor@title\cqut@supervisor%
+            \vskip22pt
+            \cqut@abs@absfont\cqut@cabstract@title
+        \end{center}\par\vspace{18pt}
+    }{\vskip1em\noindent\cqut@keywordsfont\cqut@ChineseKeywords@title\cqut@ChineseKeywords}
+\else
+    \newenvironment{cabstract}{%
+        \cleardoublepage
+        \cqut@pdfmark{\cqut@cabstract@title}{cabstract}\markboth{\cqut@cabstract@title}{\cqut@cabstract@title}
+        \begin{center}
+            \cqut@abs@titfont\cqut@ChineseTitle
+            \vskip24pt
+            \cqut@abs@absfont\cqut@cabstract@title
+        \end{center}\par\vspace{12pt}
+        \cqut@abs@textfont
+    }{\vskip24pt%
+    \noindent\cqut@keywords@titfont\cqut@ChineseKeywords@title\cqut@keywords@font\cqut@ChineseKeywords}
+\fi
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{eabstract}
+% 英文摘要，使用 \env{eabstract} 环境。
+%    \begin{macrocode}
+\ifcqut@bachelor
+    \newenvironment{eabstract}{%
+        \cleardoublepage%
+        \cqut@pdfmark{\cqut@eabstract@title}{abstracten}
+        \begin{center}
+            \cqut@abs@titfonten\cqut@EnglishTitle\vskip22pt
+            \cqut@abs@absfonten\cqut@eabstract@title
+        \end{center}
+        \par\vspace{22pt}
+    }{\vskip1em\noindent\cqut@keywordsfonten \cqut@EnglishKeywords@title\cqut@EnglishKeywords}
+\else
+    \newenvironment{eabstract}{%
+        \cleardoublepage%
+        \cqut@pdfmark{\cqut@eabstract@title}{eabstract}\markboth{\cqut@eabstract@title}{\cqut@eabstract@title}
+            \begin{center}
+                \setlength{\leftskip}{3em plus 1em minus .5em}
+                \setlength{\rightskip}{3em plus 1em minus .5em}
+                \cqut@abs@titfonten\cqut@EnglishTitle\vskip76pt
+                \cqut@abs@absfonten\cqut@eabstract@title
+            \end{center}\par\vspace{40pt}
+        \cqut@abs@textfont
+    }{\vskip48pt%
+    \noindent\cqut@keywords@titfonten\cqut@EnglishKeywords@title\cqut@keywords@fonten\cqut@EnglishKeywords}
+\fi
+%    \end{macrocode}
+% \end{environment}
+%
+% \subsubsection{目录}
+% 正文中三级小节（subsubsubsection）不予编号；
+% 本科：编目层次至小节（subsection），硕博：编目层次至小小节（subsubsection）。
+%    \begin{macrocode}
+\setcounter{secnumdepth}{3}
+\ifcqut@bachelor
+    \setcounter{tocdepth}{2}
+\else
+    \setcounter{tocdepth}{3}
+\fi
+%    \end{macrocode}
+%
+% \begin{macro}{\tableofcontents}
+% 重定义中文目录标题样式。该部分编入书签，同时在目录中不出现“目录”项。
+%    \begin{macrocode}
+\renewcommand\tableofcontents{%
+    \cleardoublepage
+    \pdfbookmark{\contentsname}{toc}%
+    \chapter*{\cqut@toc@tocfont\cqut@content@title}%
+    \ifcqut@bachelor\relax\else\markboth{\cqut@content@title}{\cqut@content@title}\fi
+    \@starttoc{toc}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\tableofcontentsEN}
+% 定义英文目录，条目格式与中文目录相同。
+%    \begin{macrocode}
+\ifcqut@bachelor\relax\else
+    \newcommand\tableofcontentsEN{%
+        \cleardoublepage
+        \pdfbookmark{\cqut@econtentsname}{toce}%
+        \chapter*{%
+            \em\cqut@econtentsname%
+            \ifcqut@bachelor\relax\else\markboth{\cqut@econtentsname}{\cqut@econtentsname}\fi%
+        }%
+        \@starttoc{toce}
+    }
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\cqut@addengcontents}
+% 加入英文目录项。本命令依次接受 3 个参数：目录层级、标题文本、所使用的字体和（或）前缀字符。
+%    \begin{macrocode}
+    \newcommand\cqut@addengcontents[3]{%
+        \addcontentsline{toce}{#1}{\protect\numberline{#3\@nameuse{the#1}}#2}
+    }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\echapter}
+% \begin{macro}{\esection}
+% \begin{macro}{\esubsection}
+% \begin{macro}{\esubsubsection}
+% 定义将不同层次标题加入英文目录中的命令。
+%    \begin{macrocode}
+    \newcommand\echapter[1]{\cqut@addengcontents{chapter}{#1}{\cqut@toce@chapfont{}\cqut@econtent@chapter}}
+    \newcommand\esection[1]{\cqut@addengcontents{section}{#1}{}}
+    \newcommand\esubsection[1]{\cqut@addengcontents{subsection}{#1}{}}
+    \newcommand\esubsubsection[1]{\cqut@addengcontents{subsubsection}{#1}{}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\bichapter}
+% \begin{macro}{\bisection}
+% \begin{macro}{\bisubsection}
+% \begin{macro}{\bisubsubsection}
+% 类似 \cs{bicaption} 可接受两个参数来生成双语图标注一样，定义 \cs{bichapter} 命令从而更加方便一些。
+% \emph{以下定义的命令在使用时不可带星号。}
+%    \begin{macrocode}
+    \NewDocumentCommand{\bichapter}{ o m m }{\chapter[#1]{#2}\echapter{#3}}
+    \NewDocumentCommand{\bisection}{ o m m }{\section[#1]{#2}\esection{#3}}
+    \NewDocumentCommand{\bisubsection}{ o m m }{\subsection[#1]{#2}\esubsection{#3}}
+    \NewDocumentCommand{\bisubsubsection}{ o m m }{\subsubsection[#1]{#2}\esubsubsection{#3}}
+\fi
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% 使用 \pkg{titletoc} 宏包的 \cs{titlecontents} 命令来设置目录项格式。
+% 对于硕博论文而言，以下设置会同时影响中文和英文目录。
+% \cs{titlecontents} 的语法为：
+%
+% \begin{syntax}{titlecontents}
+% \marg{标题层级}\oarg{左侧间距}
+%
+% \marg{上间距}
+% \marg{标题格式}\marg{引导线与页码}\oarg{下间距}
+% \end{syntax}
+%
+%    \begin{macrocode}
+\ifcqut@bachelor
+    \titlecontents{chapter}[0em]
+        {\cqut@toc@chapfont\vspace{3pt}}
+        {\thecontentslabel\quad}{}
+        {\titlerule*[.4em]{$\cdot$}\bfseries\contentspage}
+    \titlecontents{section}[2.5em]
+        {\cqut@toc@secfont\vspace{-3pt}}
+        {\thecontentslabel\quad}{}
+        {\titlerule*[.5em]{$\cdot$}\contentspage}
+    \titlecontents{subsection}[4.0em]
+        {\cqut@toc@ssecfont\vspace{-3pt}}
+        {\thecontentslabel\hspace{0.70cm}}{}
+        {\titlerule*[1em]{$\cdot$}\contentspage}
+\else
+    \titlecontents{chapter}[0em]
+        {\cqut@toc@chapfont\vspace{3pt}}
+        {\thecontentslabel\quad}{}
+        {\titlerule*[.25em]{$\cdot$}\bfseries\contentspage}
+    \titlecontents{section}[2.25em]
+        {\cqut@toc@secfont\vspace{-3pt}}
+        {\thecontentslabel\quad}{}
+        {\titlerule*[.5em]{$\cdot$}\contentspage}
+    \titlecontents{subsection}[5em]
+        {\cqut@toc@ssecfont\vspace{-3pt}}
+        {\thecontentslabel\quad}{}
+        {\titlerule*[1em]{$\cdot$}\contentspage}
+    \titlecontents{subsubsection}[8.5em]
+        {\cqut@toc@sssecfont\vspace{-3pt}}
+        {\thecontentslabel\quad}{}
+        {\titlerule*[1em]{$\cdot$}\contentspage}
+\fi
+%    \end{macrocode}
+%
+% 通过重定义 \pkg{natbib} 宏包的 \cs{bibsection}，实现参考文献的编目。
+%    \begin{macrocode}
+\renewcommand{\bibsection}{
+    \chapter*{\bibname}
+    \addcontentsline{toc}{chapter}{\bibname}
+    \ifcqut@bachelor\relax\else
+        \addcontentsline{toce}{chapter}{\cqut@toce@chapfont\cqut@ebib@title}
+        \markboth{\bibname}{\bibname}
+    \fi
+}
+%    \end{macrocode}
+%
+% 对于本科的设计图纸的两种编目方式：一是加入主目录，另一种是单独生成目录。
+%
+% \begin{macro}{\dcaption}
+% 定义命令 \cs{dcaption}，在 \cs{caption} 的基础上将设计图纸加入主目录。
+% 模板设置“设计图纸”的目录级别和小节相同，但却没有小节的编号。
+% 为保证在目录中的文字对齐，所以增加其缩进。
+%    \begin{macrocode}
+\ifcqut@bachelor
+    \newcommand{\dcaption}[1]{%
+        \caption{#1}\addcontentsline{toc}{subsection}{%
+            \hspace{2.5em}\cqut@dfigurename~\thefigure\hspace{1em}{#1}%
+        }
+    }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\cqut@listof}
+% 另外新定义“设计图纸目录”。如果需要单独编目，可使用 \cs{listofdesignfigures} 命令生成。
+% 这里按照 \pkg{float}宏包的 \cs{listof} 命令来定义我们的 \cs{cqut@listof} 命令。
+%    \begin{macrocode}
+    \newcommand{\cqut@listof}[2]{%
+        \xpatchcmd{\@dottedtocline}{\hbox{.}}{\hbox{$\cdot$}}{}{}
+        \renewcommand{\@dotsep}{1.7}%
+        \@ifundefined{ext@#1}{\float@error{#1}}{%
+            \@namedef{l@#1}{\@dottedtocline{1}{0em}{2em}}
+            \float@listhead{\cqut@toc@tocfont{}#2}%
+            \begingroup\setlength{\parskip}{\z@}%
+            \cqut@toc@dsgfigfont\@starttoc{\@nameuse{ext@#1}}%
+            \endgroup%
+        }
+    }
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\listofdesignfigures}
+% “设计图纸目录”跟主目录相似。
+%    \begin{macrocode}
+    \newcommand{\listofdesignfigures}{%
+        \cleardoublepage%
+        \cqut@pdfmark{\cqut@dfigure@content@title}{dfigure}%
+        \cqut@listof{dfigure}{\cqut@dfigure@content@title}
+    }
+\fi
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{前言}
+% \begin{environment}{foreword}
+% 仅本科。定义环境 \env{foreword} 插入前言部分。
+%    \begin{macrocode}
+\newenvironment{foreword}{%
+    \cleardoublepage
+    \cqut@pdfmark{\cqut@foreword@title}{foreword}
+    \chapter*{\cqut@foreword@title}
+}{}
+%    \end{macrocode}
+% \end{environment}
+%
+% \subsection{主文档部分}
+% \subsubsection{行距设置}
+% 计算公式：
+% \[
+%     1.2 \times \meta{LineSpread} \times \meta{FontSize} = \meta{BaselineSkip}
+% \]
+% 其中，正文的 \meta{FontSize} 为小四号，而 \meta{BaselineSkip} 取
+% 本科行距 22 磅、硕博 20 磅，故可求得 \meta{LineSpread}。
+%    \begin{macrocode}
+\ifcqut@bachelor
+    \linespread{1.5221}
+\else
+    \linespread{1.3837}
+\fi
+%    \end{macrocode}
+%
+% \subsubsection{标题格式}
+%    \begin{macrocode}
+\ifcqut@bachelor
+    \ctexset{%
+        chapter = {%
+            name        = {第,章},
+            number      = \arabic{chapter},
+            format      = \cqut@chapfont,
+            beforeskip  = 12 pt,
+            afterskip   = 32 pt,
+            fixskip     = true,
+            aftername   = \qquad,
+        },
+        section = {%
+            name        = {第,节},
+            format      = \cqut@secfont,
+            aftername   = \quad,
+            beforeskip  = 29 pt,
+            afterskip   = 32 pt,
+            fixskip     = true,
+        },
+        subsection = {%
+            format      = \cqut@ssecfont,
+            aftername   = \quad,
+            beforeskip  = 3 pt,
+            afterskip   = 3 pt,
+        },
+        subsubsection = {%
+            name        = {(,)},
+            format      = \cqut@sssecfont,
+            number      = \arabic{subsubsection},
+            beforeskip  = 3 pt,
+            afterskip   = 3 pt,
+            aftername   = \hspace{0.5em},
+            indent      = 0.5em,
+        },
+    }
+\else
+    \ctexset{%
+        chapter = {%
+            name        = {第,章},
+            number      = \chinese{chapter},
+            format      = \cqut@chapfont,
+            beforeskip  = 12 pt,
+            afterskip   = 46 pt,
+            fixskip     = true,
+            aftername   = \qquad,
+        },
+        section = {%
+            format      = \cqut@secfont,
+            aftername   = \quad,
+            beforeskip  = 26 pt,
+            afterskip   = 28 pt,
+            fixskip     = true,
+        },
+        subsection = {%
+            format      = \cqut@ssecfont,
+            beforeskip  = 3 pt,
+            afterskip   = 3 pt,
+        },
+        subsubsection = {%
+            format      = \cqut@sssecfont,
+            beforeskip  = 3 pt,
+            afterskip   = 3 pt,
+        },
+    }
+\fi
+%    \end{macrocode}
+%
+% \subsubsection{列表环境}
+% \begin{environment}{enumerate}
+% \begin{environment}{itemize}
+% \begin{environment}{description}
+% 使用 \pkg{enumitem} 宏包分别设置编号列表、无编号列表、描述列表环境的间距。
+% 这里将三种列表默认增加的垂直间距全部清除，即各行间距与正文行间距相同，以符合中文习惯。
+%
+% 如果一级列表环境作为标题（对应《本科生规范》中的五级标题，即带圈序号），
+% 则不设置加粗、不增加段间距。由于列表间的垂直间距减小了，所以
+% 相应地稍微调小列表序号和文字之间的距离，使得文字更紧凑。
+%
+% 另外，一级编号列表环境的序号改为 \pkg{pifont} 宏包提供的带圈数字，
+% 二级及之后的列表、无编号列表保持默认设置。
+%    \begin{macrocode}
+\setlist{%
+    leftmargin = 2em,
+    nosep,
+}
+\setlist[enumerate,1]{%
+    label    = \lower 0.1em\hbox{\large{\ding{\numexpr191+\value{enumi}}}},
+    labelsep = 2pt,
+}
+\setlist[enumerate,2]{%
+    labelsep = 6pt,
+}
+\setlist[description]{%
+    labelsep = 1em,
+}
+%    \end{macrocode}
+% \end{environment}
+% \end{environment}
+% \end{environment}
+%
+% \subsubsection{数学类}
+% 使用 \pkg{unicode-math} 宏包配置数学标准字形、粗体字形，并设置偏微分算子为直立体。
+%    \begin{macrocode}
+\unimathsetup{
+    math-style  = ISO,
+    bold-style  = ISO,
+    partial     = upright,
+}
+%    \end{macrocode}
+%
+% 修改 \cs{mathbb}，使得字母显示正确。
+%    \begin{macrocode}
+\let\mathbb\relax
+\DeclareMathAlphabet{\mathbb}{U}{msb}{m}{n}%
+%    \end{macrocode}
+%
+% 使用 \pkg{amsthm} 宏包来进行定理类环境的格式控制，并预设如下定理类环境。编号跨章重置计数。
+%    \begin{macrocode}
+\newtheoremstyle{cqutthm}%  name
+{3pt}%                      Space above
+{3pt}%                      Space below
+{}%                         Body font
+{}%                         Indent amount
+{\bfseries}%                Theorem head font
+{:}%                        Punctuation after theorem head
+{.5em}%                     Space after theorem head
+{}%                         Theorem head spec
+\theoremstyle{cqutthm}
+\newtheorem{axiom}{公理}[chapter]
+\newtheorem{theorem}{定理}[chapter]
+\newtheorem{corollary}{推论}[chapter]
+\newtheorem{remark}{注解}[chapter]
+\newtheorem{assumption}{假设}[chapter]
+\newtheorem{definition}{定义}[chapter]
+\newtheorem{property}{性质}[chapter]
+\newtheorem{proposition}{命题}[chapter]
+\newtheorem{lemma}{引理}[chapter]
+%    \end{macrocode}
+%
+% \begin{environment}{proof}
+% 按照 \pkg{amsthm} 宏包说明重定义 \env{proof}：
+%    \begin{macrocode}
+\renewenvironment{proof}[1][\proofname]{\par
+    \pushQED{\qed}%
+    \normalfont\topsep6\p@\@plus6\p@\relax
+    \trivlist
+    \item\relax
+    {#1\@addpunct{.}}\hspace\labelsep\ignorespaces
+}{\popQED\endtrivlist\@endpefalse}
+%    \end{macrocode}
+% \end{environment}
+%
+% \subsubsection{部分宏包汉化设置}
+% 对 \pkg{siunitx} 宏包汉化处理，并将连接符改为“$\sim$”，符合中文习惯。
+%    \begin{macrocode}
+\sisetup{%
+    list-final-separator = { 和 },
+    list-pair-separator = { 和 },
+    range-phrase = {\,$\sim$\,},
+}
+%    \end{macrocode}
+%
+% \subsubsection{浮动体}
+% \begin{environment}{dfigure}
+% 本科：
+% 使用 \pkg{float} 宏包新定义浮动体环境 \env{dfigure}，用于排版设计图纸。
+% 设计图纸与普通插图的区别在于：
+% \begin{itemize}
+%     \item 标签不同，如：“设计图纸 1-1” 与 “图 1-1”；
+%     \item 编号相互独立；
+%     \item 仅设计图纸编入目录，且此目录独立于主目录。
+% \end{itemize}
+%
+%    \begin{macrocode}
+\ifcqut@bachelor
+    \newfloat{dfigure}{htbp}{lodf}[chapter]
+    \floatname{dfigure}{\cqut@dfigurename}
+%    \end{macrocode}
+% \end{environment}
+%
+% 硕博：
+% 使用 \pkg{bicaption} 宏包设置双语标题，其中第二语言为英语。
+%
+%    \begin{macrocode}
+\else
+    \DeclareCaptionOption{english}[]{
+        \renewcommand\figurename{\cqut@bifigure@name}
+        \renewcommand\tablename{\cqut@bitable@name}
+    }
+    \captionsetup[bi-second]{english}
+\fi
+%    \end{macrocode}
+%
+% 《研究生规范》中规定表格单元格里的字号为五号，而未规定行距，这里保留前设的伸缩因子。
+% 其中 \cs{AtBeginEnvironment} 是 \pkg{etoolbox} 宏包中的命令，可给环境打补丁。
+%
+%    \begin{macrocode}
+\ifcqut@bachelor\relax\else
+    \AtBeginEnvironment{tabular}{\cqut@floatfont}
+    \AtBeginEnvironment{tabularx}{\cqut@floatfont}
+\fi
+%    \end{macrocode}
+%
+% 对于 \pkg{longtable} 宏包的设置则稍有不同：
+% 在“符号说明表”中我们嵌套了 \env{longtable} 环境，但其中的字号仍应为小四号。
+% 因此这里需要保留原先的定义。
+%    \begin{macrocode}
+\let\oldlongtable\longtable
+\let\endoldlongtable\endlongtable
+\def\longtable{\zihao{5}\oldlongtable}
+\AtEndEnvironment{longtable}{\normalsize}
+%    \end{macrocode}
+%
+% 设置插图的文件路径。
+%    \begin{macrocode}
+\graphicspath{{figure/}}
+%    \end{macrocode}
+%
+% 使用 \pkg{caption} 宏包重定义图、表等浮动体的标签样式。
+%
+%    \begin{macrocode}
+\renewcommand{\captionfont}{\cqut@float@captionfont}
+\renewcommand{\captionlabelfont}{\cqut@float@labelfont}
+\DeclareCaptionLabelSeparator{capspace}{\quad}
+\captionsetup{labelsep=capspace}
+\captionsetup[table]{%
+    position  = top,
+    aboveskip = 0.5em,
+    belowskip = 0.5em,
+}
+\captionsetup[figure]{%
+    position  = bottom,
+    aboveskip = 0.5em,
+    belowskip = -0.5em,
+}
+\captionsetup[dfigure]{%
+    position  = bottom,
+    aboveskip = 1em,
+    belowskip = 1em,
+}
+%    \end{macrocode}
+%
+% 更改图、表、公式和代码的编号格式。其中重定义 \cs{thelstlisting} 须在 \cs{AtBeginDocument} 中。
+%    \begin{macrocode}
+\AtBeginDocument{%
+    \renewcommand{\thesubtable}{(\alph{subtable})}
+    \renewcommand{\thetable}{\thechapter-\arabic{table}}
+    \renewcommand{\thesubfigure}{(\alph{subfigure})}
+    \renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+    \ifcqut@bachelor
+        \renewcommand{\thedfigure}{\thechapter-\arabic{dfigure}}
+        \renewcommand{\theequation}{\thechapter-\arabic{equation}}
+    \else
+        \renewcommand{\eqref}[1]{\equationname~\textup{(\ref{#1})}}
+        \renewcommand{\theequation}{\thechapter-\arabic{equation}}
+    \fi
+    \renewcommand{\thelstlisting}{\thechapter-\arabic{lstlisting}}
+}
+%    \end{macrocode}
+%
+% \subsubsection{文献引用}
+% \begin{macro}{\inlinecite}
+% 这里定义的 \cs{inlinecite} 适用于行间引用，依赖于 \pkg{natbib} 宏包里的命令。
+%    \begin{macrocode}
+\DeclareRobustCommand\inlinecite{\@inlinecite}
+\def\@inlinecite#1{\begingroup\let\@cite\NAT@citenum\citep{#1}\endgroup}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{数学公式}
+% 硕博公式需要加入点线连接公式与编号。这里通过重定义 \file{source2e}
+% 中的 \env{equation} 环境，故仅在 \env{equation} 环境中生效。
+%    \begin{macrocode}
+\ifcqut@bachelor\relax\else
+    \xpatchcmd{\dotfill}{.44em}{.3em}{}{}
+    \renewenvironment{equation}{
+        \@beginparpenalty\predisplaypenalty
+        \@endparpenalty\postdisplaypenalty
+        \refstepcounter{equation}%
+        \trivlist \item[]\leavevmode
+        \hb@xt@\linewidth\bgroup $\m@th% $
+        \displaystyle\hfill}
+        {$\;\dotfill % $
+        \displaywidth\linewidth\hbox{\@eqnnum}%
+        \egroup
+        \endtrivlist}
+\fi
+%    \end{macrocode}
+%
+% \subsubsection{代码块}
+%    \begin{macrocode}
+\lstset{%
+    aboveskip        = 0.5em,
+    belowskip        = 0.5em,
+    tabsize          = 4,
+    basicstyle       = \cqut@codefont,
+    frame            = single,
+    basewidth        = {.5em,.4em},
+    xleftmargin      = 1.5em,
+    xrightmargin     = 1.5em,
+    commentstyle     = \cqut@codecomfont,
+    keywordstyle     = \cqut@codekeyfont,
+    backgroundcolor  = \color{lightgray!10},
+    showtabs         = false,
+    showspaces       = false,
+    showstringspaces = false,
+    captionpos       = t,
+    breaklines       = true,
+    numbers          = left,
+    numberstyle      = \tiny,
+    numbersep        = 6 pt,
+    stepnumber       = 1,
+    extendedchars    = false,
+    escapechar       = {@*},
+}
+%    \end{macrocode}
+%
+% \subsection{后置部分}
+% 与前言不同的是，这几部分模板默认编入目录。
+%
+% \begin{environment}{conclusion}
+% 结论，仅本科。
+%    \begin{macrocode}
+\ifcqut@bachelor
+    \newenvironment{conclusion}{%
+        \chapter*{\cqut@concl@title}
+        \addcontentsline{toc}{chapter}{\cqut@concl@title}
+    }{}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{translation}
+% 翻译，仅本科。
+%    \begin{macrocode}
+    \newenvironment{translation}{%
+        \chapter*{\cqut@trans@title}
+        \addcontentsline{toc}{chapter}{\cqut@trans@title}
+    }{}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{macro}{\appendix}
+% 英文目录中，修改“附录”的英文前缀字符，仅硕博。
+%    \begin{macrocode}
+\else
+    \g@addto@macro\appendix{\def\cqut@econtent@chapter{Appendix~}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{environment}{achievements}
+% 研究成果及发表的学术论文，仅硕博。
+%    \begin{macrocode}
+    \newenvironment{achievements}{%
+        \cleardoublepage
+        \chapter*{\cqut@achi@title}
+        \markboth{\cqut@achi@title}{\cqut@achi@title}
+        \addcontentsline{toc}{chapter}{\cqut@achi@title}
+        \addcontentsline{toce}{chapter}{\cqut@toce@chapfont\cqut@eachi@title}
+    }{}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{resume}
+% 作者及导师简介，仅硕博。
+%    \begin{macrocode}
+    \newenvironment{resume}{%
+        \cleardoublepage
+        \chapter*{\cqut@resu@title}
+        \markboth{\cqut@resu@title}{\cqut@resu@title}
+        \addcontentsline{toc}{chapter}{\cqut@resu@title}
+        \addcontentsline{toce}{chapter}{\cqut@toce@chapfont\cqut@eresu@title}
+    }{}
+\fi
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{acknowledgement}
+% 致谢。
+%    \begin{macrocode}
+\newenvironment{acknowledgement}{%
+    \chapter*{\cqut@ack@title}
+    \ifcqut@bachelor\relax\else
+        \markboth{\cqut@ack@title}{\cqut@ack@title}
+        \addcontentsline{toce}{chapter}{\cqut@toce@chapfont\cqut@eack@title}
+    \fi
+    \addcontentsline{toc}{chapter}{\cqut@ack@title}
+}{}
+%    \end{macrocode}
+% \end{environment}
+%
+% \subsubsection{符号说明表}
+% \begin{environment}{denotation}
+% 关于章节编目同前。这里使用一个可跨页的无线长表格。
+% 为了防止符号较长，这里定义的环境需要一个可选参数用于在必要时控制第二列列宽。
+%    \begin{macrocode}
+\NewDocumentEnvironment{denotation}{ O{10cm} +b }{%
+    \cleardoublepage
+    \chapter*{\cqut@deno@title}%
+    \ifcqut@bachelor
+        \addcontentsline{toc}{chapter}{\cqut@deno@title}
+    \else
+        \cqut@pdfmark{\cqut@deno@title}{denotation}
+        \markboth{\cqut@deno@title}{\cqut@deno@title}
+    \fi
+    \vspace{-1em}%
+    \begin{oldlongtable}[c]{l@{\extracolsep{3em}}p{#1}}
+        #2
+}{\end{oldlongtable}}
+%    \end{macrocode}
+% \end{environment}
+%
+% \subsubsection{参考文献}
+% 一方面，主文件中调用了符合要求的参考文献格式控制文件，使参考文献章节的格式规范化；
+% 另一方面，调用 \pkg{gbt7714}（和 \pkg{natbib} ）宏包时已经填入相关选项，
+% 在文章中引用文献的格式也符合了要求。这里将本科模板罗列的各条参考文献之间距离稍微调小一些，而将硕博模板字号设为 5 号，行距 20 磅。
+%    \begin{macrocode}
+\ifcqut@bachelor
+    \setlength{\bibsep}{3pt}
+\else
+    \setlength{\bibsep}{0pt}
+    \renewcommand\bibfont{\linespread{1.5814}\zihao{5}}
+\fi
+%    \end{macrocode}
+%
+% \subsection{其他设置}
+% \subsubsection{强调}
+% \begin{macro}{\emph}
+% 中西文统一使用粗体。
+%    \begin{macrocode}
+\renewcommand{\emph}[1]{\textbf{#1}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\em}
+%    \begin{macrocode}
+\renewcommand{\em}{\bfsong}
+%    \end{macrocode}
+% \end{macro}
+% \subsubsection{脚注}
+% \begin{macro}{\footnote}
+% 使用带圈圈的脚注。尽管 \LaTeX\ 自带了 \cs{textcircled} 命令，但是效果并不如意。
+% 为了和一级列表环境的序号区分，这里使用 \pkg{tikz} 宏包来绘制一个围着阿拉伯数字脚注的圈。
+% 为了突出标号以便更加明确、清楚地显示，对编号设置了悬挂缩进。
+%    \begin{macrocode}
+\newcommand{\cqut@ftntcircled}[1]{%
+    \lower 0.15em\hbox{%
+        \tikz\draw (0pt, 0pt) circle (0.4 em) node {#1};%
+    }%
+}
+\renewcommand\thefootnote{\protect\cqut@ftntcircled{\tiny\arabic{footnote}}}
+\renewcommand{\@makefntext}[1]{%
+    \setlength{\leftskip}{1.5\ccwd}%
+    \noindent\llap{\lower 1pt \hbox{\@thefnmark}\,}#1%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{超链接}
+% 实现PDF书签和交叉引用的跳转。
+%    \begin{macrocode}
+\urlstyle{same}
+\hypersetup{%
+    colorlinks         = true,
+    bookmarksnumbered  = true,
+    pdfhighlight       = /N,
+    breaklinks         = true,
+    citecolor          = cyan,
+}
+%    \end{macrocode}
+%
+% 根据模板文档类是否打开 \opt{submit} 选项，设置是否关闭超链接颜色。
+%    \begin{macrocode}
+\ifcqut@submit
+    \hypersetup{hidelinks}
+\fi
+%    \end{macrocode}
+%
+% 根据模板文档类是否打开 \opt{debugger} 选项，设置是否标注行号。
+%    \begin{macrocode}
+\ifcqut@debugger
+    \AtBeginDocument{\linenumbers}
+\fi
+%</class>
+%    \end{macrocode}
+%
+%
+% \iffalse
+%    \begin{macrocode}
+%<*manual>
+\ProvidesPackage{manual}[2024/09/10 document style for CQUTthesis]
+\RequirePackage{hypdoc}
+\PassOptionsToPackage{AutoFakeSlant}{xeCJK}
+\RequirePackage[UTF8, heading, fontset = none, linespread = 1.2,]{ctex}
+\RequirePackage[toc]{multitoc}
+\RequirePackage{
+    xeCJKfntef,
+    listings,
+    float,
+    tabularx,
+    booktabs,
+    siunitx,
+    unicode-math,
+    xcolor,
+    caption,
+    enumitem,
+    metalogo,
+}
+\RequirePackage[bottom,perpage]{footmisc}
+\RequirePackage[
+    a4paper,
+    hmargin={40mm,20mm},vmargin={25mm,15mm},footskip=7mm,
+]{geometry}
+
+\ctexset{
+    fontset,
+    abstractname   = 简介,
+    indexname      = 代码索引,
+    section        = {
+        format = \Large\bfseries\raggedright,
+        name   = {第,节},
+    },
+}
+\xeCJKDeclareCharClass{CJK}{"2460->"2469}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{3}
+\setmainfont{TeX Gyre Pagella}
+\setmonofont[
+    HyphenChar = None ,
+    UprightFont=* Light, BoldFont=* Bold,
+    SlantedFont=* Light Oblique]{CMU Typewriter Text}
+\captionsetup{strut=off, labelsep=quad, labelfont+=bf}
+\lstdefinestyle{base}{
+    aboveskip        = 0 pt,
+    belowskip        = 0 pt,
+    tabsize          = 2,
+    basicstyle       = \ttfamily\small,
+    columns          = flexible,
+    frame            = single,
+    framerule        = 1 pt,
+    xleftmargin      = 1 em,
+    aboveskip        = 6 pt,
+    belowskip        = 6 pt,
+    commentstyle     = \slshape\color{gray},
+    keywordstyle     = \color{blue},
+    backgroundcolor  = \color{lightgray!10},
+    showtabs         = false,
+    showspaces       = false,
+    showstringspaces = true,
+    captionpos       = t,
+    breaklines       = true,
+    numbers          = none,
+    extendedchars    = false,
+    escapechar       = {@*},
+    gobble           = 4,
+}
+\lstdefinestyle{latex}{%
+    style=base,
+    rulecolor=\color{cyan},
+    language=[LaTeX]TeX,
+}
+\lstdefinestyle{shell}{%
+    style=base,
+    rulecolor=\color{violet!65},
+    language=bash,
+}
+\lstnewenvironment{latex}{\lstset{style=latex}}{}
+\lstnewenvironment{shell}{\lstset{style=shell}}{}
+\let\oldCodelineNo\theCodelineNo
+\def\theCodelineNo{\textcolor{gray}{\oldCodelineNo}}
+\setlist{
+    leftmargin = 0em,
+    nosep
+}
+\setlist[description]{%
+    itemindent = 2.5em,
+}
+\setlist[enumerate]{%
+    itemindent = 2em,
+}
+\newcommand\Arg[1]{ \texttt{\char`\{} \meta{#1} \texttt{\char`\}} }
+\providecommand\marg[1]{ \Arg{#1} }
+\providecommand\oarg[1]{ \texttt[ \meta{#1} \texttt] }
+\providecommand\parg[1]{ \texttt( \meta{#1} \texttt) }
+\DeclareRobustCommand{\opt}{\texttt}
+\DeclareRobustCommand{\env}{\texttt}
+\DeclareRobustCommand{\pkg}{\textsf}
+\DeclareRobustCommand{\cls}{\textsf}
+\DeclareRobustCommand{\file}{\textsf}
+\NewDocElement[macrolike = false ,
+                idxtype   = opt.  ,
+                idxgroup  = options ,
+                printtype = \textit{opt.}
+            ]{Opt}{option}
+\NewDocumentEnvironment{syntax}{ m }{%
+    \linespread{1}\xeCJKsetup{PunctStyle=plain}\xeCJKsetup{CJKecglue}%
+    \cs{#1}\ignorespaces%
+}{\vspace{0.5em}}
+\def\glossaryname{版本历史}
+\GlossaryPrologue{\section{\glossaryname}}
+\IndexPrologue{%
+    \clearpage\section{\indexname}
+    \textit{意大利体的数字表示描述对应索引项的页码；
+    带下划线的数字表示定义对应索引项的代码行号；
+    罗马字体的数字表示使用对应索引项的代码行号。}
+}
+\def\IndexLayout{%
+    \newgeometry{hmargin=15mm,vmargin={25mm,15mm},footskip=7mm}%
+    \setlength\IndexMin{.5\textheight}%
+    \ctexset{section/numbering=false}%
+}
+\hypersetup{
+    pdftitle  = {CQUTthesis：重庆理工大学学位论文模板},
+    pdfauthor = {The-CCSN},
+}
+\CodelineIndex
+\EnableCrossrefs
+\RecordChanges
+\endinput
+%</manual>
+%    \end{macrocode}
+% \fi
+%
+%
+% \Finale
+\endinput
