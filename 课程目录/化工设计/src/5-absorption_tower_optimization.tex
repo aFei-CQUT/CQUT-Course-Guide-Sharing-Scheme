@@ -1,14 +1,14 @@
 %%% 吸收填料塔优化
-\chapter{吸收填料塔成本、安全优化}
+\chapter{影响成本因素及安全因素的变量探讨与优化}
 
 现考虑吸收填料塔设计的优化，因吸收塔内部、外部附件的选择取决于吸收塔工艺参数，当吸收填料塔任务目标及外界条件确定时，则整个填料塔对象各项参数确定。也就是说，选定的气体的流量、气体中\ce{SO2}的摩尔分数、\ce{SO2}的吸收率、操作温度、操作压力、填料总比表面积、填料直径、单个填料吸收塔高度限制、实际液气比取最小液气比的比率一定时，填料塔的工艺参数即可确定，所需成本价格、安全因素即确定。
 
 
 
 %%% ===============================================
-\section{变量分析}
+\section{控制变量及相关性分析}
 
-\subsection{变量趋势分析}
+\textbf{控制变量法分析}
 
 为了更直观地了解各个变量对成本因素和安全因素的影响，我们绘制了变量趋势图。图\ref{fig:trends}展示了9个变量(即对象初始化的9个决策变量)分别对成本因素和安全因素的影响趋势。
 
@@ -31,7 +31,7 @@
 
 这些趋势分析为我们后续的多目标优化提供了重要的参考。
 
-\subsection{相关性分析方法}
+\textbf{相关性分析方法}
 
 为了确定哪些变量对成本因素和安全因素影响最大，我们进行了相关性分析。具体步骤如下：
 
@@ -49,18 +49,33 @@
 \end{equation}
 其中，$x_i$和$y_i$分别表示变量和因素（成本或安全）的值，$\bar{x}$和$\bar{y}$表示它们的平均值。
 
-\subsection{相关性分析结果}
+\textbf{相关性分析结果}
 
 通过相关性分析，我们得到了每个变量与成本因素和安全因素的相关系数。结果如表\ref{tab:correlation}所示。
 
-\begin{table}[h]
-	\centering
-	\caption{变量与成本因素和安全因素的相关系数}
-	\label{tab:correlation}
-	\begin{tabular}{lcc}
-		\hline
-		变量 & 成本因素相关性 & 安全因素相关性 \\
-		\hline
+\begin{longtable}{
+		@{} p{0.30\textwidth} p{0.30\textwidth} 
+		p{0.30\textwidth} @{}
+	}
+	\caption{变量与成本因素和安全因素的相关系数} \\
+	\label{tab:correlation}\\
+	\toprule
+	变量 & 成本因素相关性 & 安全因素相关性 \\
+	\midrule
+	\endfirsthead
+	
+	\toprule
+	变量 & 成本因素相关性 & 安全因素相关性 \\
+	\midrule
+	\endhead
+	
+	\midrule
+	\multicolumn{3}{r}{\textit{——接下页}} \\
+	\endfoot
+	
+	\bottomrule
+	\endlastfoot
+	
 		气体流量 & 0.8036 & 0.5080 \\
 		气相中二氧化硫含量 & 0.7276 & 0.7137 \\
 		二氧化硫吸收率 & 0.9951 & -0.0000 \\
@@ -70,15 +85,13 @@
 		填料直径 & nan & -0.0000 \\
 		单个填料吸收塔最大高度 & -0.7055 & 0.0000 \\
 		取最小液气比的比例常数 & -0.6191 & -0.0000 \\
-		\hline
-	\end{tabular}
-\end{table}
+\end{longtable}
 
 根据相关性分析结果，可选择相关性最高的几个变量作为关键变量进行后续优化。
 
-\section{多目标优化}
+\section{经济成本及安全因素优化}
 
-\subsection{基本假设}
+\textbf{基本假设}
 
 \begin{enumerate}
 	\item 吸收填料塔的成本因素仅与塔径和塔高有关。
@@ -86,7 +99,8 @@
 	\item 不考虑塔内附件和塔外附件对成本、安全的影响，因填料塔工艺参数及填料确定内外附属部件可由此确定，所需成本也随即确定。
 \end{enumerate}
 
-\subsection{决策变量}
+\textbf{决策变量}
+
 现对如下九个变量关于成本因素、安全因素进行相关性分析和趋势性分析。
 
 \begin{enumerate}
@@ -101,7 +115,7 @@
 	\item 取最小液气比的比例常数，$\big(\frac{L}{V}\big)_{min\,ratio}$
 \end{enumerate}
 
-\subsection{优化目标}
+\textbf{优化目标}
 
 本章节优化目标为：
 \begin{enumerate}
@@ -147,7 +161,7 @@ NSGA-II的主要步骤如下：
 
 通过运行NSGA-II算法，我们得到了一系列非支配解，即帕累托前沿。图\ref{fig:pareto}展示了优化结果的帕累托前沿。
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{pareto_front.png}
 	\caption{优化结果的帕累托前沿}

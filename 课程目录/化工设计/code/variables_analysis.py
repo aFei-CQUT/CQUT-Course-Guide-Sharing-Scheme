@@ -5,20 +5,16 @@ from absorption_problem import AbsorptionColumnProblem
 # 设置字体为 Times New Roman
 plt.rcParams['font.family'] = 'Times New Roman'
 plt.rcParams['axes.unicode_minus'] = False
-
 # 使用 seaborn 风格美化
 plt.style.use('seaborn-v0_8-whitegrid')
-
 # 固定的其他变量值
 fixed_values = np.array([1000, 0.05, 0.98, 20, 120, 175, 38, 7.5, 1.40])
-
 # 变量名称（英文）
 variable_names = [
     'Gas Flow Rate', '$SO_{2}$ Mole Fraction', 'Absorption Efficiency', 
     'Temperature', 'Pressure', 'Packing Surface Area per Volume $a_{t}$', 
     'Packing Width $d$', 'Maximum Tower Height $h_{max}$', 'Minimum L/V Ratio'
 ]
-
 # x 轴变量的取值范围
 x_ranges = [
     np.linspace(900, 1100, 200),    # Gas Flow Rate
@@ -31,7 +27,6 @@ x_ranges = [
     np.linspace(5, 10, 200),        # Maximum Tower Height h_max
     np.linspace(1.2, 2.0, 200)      # Minimum L/V Ratio
 ]
-
 problem = AbsorptionColumnProblem()
 
 # 归一化函数，使用 Min-Max 归一化将值缩放到 [0, 1]
@@ -50,12 +45,10 @@ def moving_average(data, window_size):
 # 参数敏感性分析函数
 def sensitivity_analysis(problem, fixed_values, variable_names, perturbation=0.01):
     sensitivity_results = {}
-    
     for i, name in enumerate(variable_names):
         original_value = fixed_values[i]
         perturbed_values = [original_value * (1 - perturbation), original_value * (1 + perturbation)]
         costs, safety_factors = [], []
-        
         for value in perturbed_values:
             x = fixed_values.copy()
             x[i] = value
@@ -75,7 +68,6 @@ def sensitivity_analysis(problem, fixed_values, variable_names, perturbation=0.0
 def correlation_analysis(problem, x_ranges, fixed_values):
     results = {'cost_factor': [], 'safety_factor': []}
     variable_values = []
-
     for i, var_range in enumerate(x_ranges):
         costs, safety_factors = [], []
         for value in var_range:
@@ -84,7 +76,6 @@ def correlation_analysis(problem, x_ranges, fixed_values):
             cost_factor, safety_factor, _ = problem.evaluate(x)
             costs.append(cost_factor)
             safety_factors.append(safety_factor)
-
         # 记录每个变量的结果
         results['cost_factor'].append(costs)
         results['safety_factor'].append(safety_factors)
@@ -118,49 +109,38 @@ window_size = 5  # 设置移动平均窗口大小
 for i in range(9):
     ax = axes[i // 3, i % 3]
     variable_values = x_ranges[i]
-    
     costs = []
     safety_factors = []
-    
     for value in variable_values:
         x = fixed_values.copy()
         x[i] = value
         cost_factor, safety_factor, _ = problem.evaluate(x)
         costs.append(cost_factor)
         safety_factors.append(safety_factor)
-    
     # 归一化数据
     normalized_costs = normalize(np.array(costs))
     normalized_safety_factors = normalize(np.array(safety_factors))
-    
     # 平滑处理
     smoothed_costs = moving_average(normalized_costs, window_size)
     smoothed_safety_factors = moving_average(normalized_safety_factors, window_size)
-    
     # 重新计算变量值的范围，因为移动平均会减少数据点数
     smoothed_variable_values = variable_values[window_size-1:]
-    
     # 绘制平滑后的归一化曲线
     ax.plot(smoothed_variable_values, smoothed_costs, label='Cost Factor (Smoothed)', color='purple', lw=2)
     ax.plot(smoothed_variable_values, smoothed_safety_factors, label='Safety Factor (Smoothed)', color='green', lw=2, linestyle='--')
-    
     ax.set_title(f'{variable_names[i]} vs. Metrics (Smoothed)', fontsize=18)
     ax.set_xlabel(variable_names[i], fontsize=15)
     ax.set_ylabel('Normalized Value', fontsize=15)
     ax.tick_params(axis='both', which='major', labelsize=12)
-
     # 添加图例
     ax.legend(fontsize=12)
 
 # 调整布局以避免重叠，并调整子图之间的间距
 plt.subplots_adjust(wspace=0.3, hspace=0.4)
-
 # 显示图表
 plt.show()
-
 # 运行相关性分析
 variable_values, results = correlation_analysis(problem, x_ranges, fixed_values)
-
 # 打印相关性系数
 correlation_coefficients = get_correlation_coefficients(variable_values, results, variable_names)
 for param, correlations in correlation_coefficients.items():

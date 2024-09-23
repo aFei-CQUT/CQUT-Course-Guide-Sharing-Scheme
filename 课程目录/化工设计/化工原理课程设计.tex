@@ -1,0 +1,106 @@
+% !TeX encoding = UTF-8
+% 主文件--main.tex
+\documentclass[
+	type = bachelor,	% bachelor | master | doctor
+	%submit,
+	%openany,			% openany  | openright(default)
+	fontset = windows,  % fandol   | windows  (normal)
+]{cqutthesis}
+
+% 在这个文件里载入其他对写作有帮助的宏包,或自定义命令等
+\usepackage{mycfg}
+
+\cqutsetup{
+	% 论文的中文标题
+	ChineseTitle		= {\ce{SO2}吸收填料塔设计},
+	% 封面上的标题。总字数不要超过 36 个汉字长度。
+	% 本科：可以一行或分两行写,如无第二行将 ChineseTitleLineB 留空或注释掉；
+	% 封面标题首行
+	ChineseTitleLineA	= {化工原理课程设计(论文)},
+	% 封面标题次行
+	ChineseTitleLineB	= {\ce{SO2}吸收填料塔设计},
+	% 论文的英文标题,一般需要大写
+	EnglishTitle		= {DESIGN OF \ce{SO2} ABSORPTION PACKED TOWER},
+	% 作者的中文姓名
+	author				= {刘抗非},
+	% 班级（仅本科）
+	class				= {化学工程与工艺三班},
+	% 学号
+	studentid			= {12115990136},
+	% 学院（仅本科）
+	school				= {化学化工学院},
+	% 专业名称（仅本科）
+	major				= {化学工程与工艺},
+	% 导师的姓名与职称（仅本科）
+	supervisor			= {李新利},
+	% 专业负责人姓名（仅本科）
+	msupervisor			= {郝江瑜},
+	% 中文、英文关键词,各关键词间以西文逗号“,”分隔
+	ChineseKeywords		= {\ce{SO2}填料吸收塔, 工艺参数计算, 设计优化},
+	EnglishKeywords		= {\ce{SO2} absorption, packed tower, polypropylene Pall rings, design optimization, absorption efficiency},
+	% 日期,请注意：务必使用形如“YYYY-MM-DD”的格式
+	date				= {2024-09-19},
+}
+
+\begin{document}
+	
+	% 封面
+	\includepdf[pages=-,pagecommand={\thispagestyle{empty}}]{封面.pdf}
+	\cleardoublepage
+	
+	% 任务书
+	\includepdf[pages=-,pagecommand={\thispagestyle{empty}}]{任务书.pdf}
+	\cleardoublepage
+	
+	% 从此以大写罗马数字编页码
+	\frontmatter
+	
+	% 摘要
+	\include{src/abstract}
+	
+	% 生成主目录
+	\tableofcontents
+	
+	% 设计图纸目录,这与主目录独立
+	% \listofdesignfigures
+	
+	% 前言 or 引言
+	\include{src/foreword}
+	
+	% 从此以阿拉伯数字编页码
+	\mainmatter
+	
+	% 流程说明
+	\include{src/1-process_description}
+	
+	% 吸收塔工艺计算
+	\include{src/2-absorption_tower_calculations}
+	
+	% 吸收塔内部附件选择
+	\include{src/3-inner_annex_choice}
+	
+	% 吸收塔外部附件选择
+	\include{src/4-outter_annex_choice}
+	
+	% 吸收塔参数优化
+	\include{src/5-absorption_tower_optimization}
+	
+	% 结论 or 总结	
+	\include{src/conclusion}
+	
+	% 参考文献
+	% 注：至少引用一篇参考文献,否则执行全编译时下面两行会引起编译错误
+	\nocite{*}
+	\bibliographystyle{gbt7714-numerical}
+	\bibliography{thesisbib.bib}
+	
+	% 符号说明
+	\include{src/denotation}
+	
+	% 附录
+	\appendix
+	\include{src/appendixA}
+	\include{src/appendixB}
+	\include{src/appendixC}
+	
+\end{document}

@@ -1,0 +1,2 @@
+直接复制到AutoCAD安装目录中的font文件夹中，例如：
+D:\Program Files\Autodesk\AutoCAD 2019\Fonts

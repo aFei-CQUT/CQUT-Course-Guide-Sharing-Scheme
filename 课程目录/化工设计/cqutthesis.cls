@@ -210,7 +210,7 @@
     \ttfamily\bfseries
     \ifcqut@submit\relax\else\color{blue!80!black}\fi}
 \ifcqut@bachelor
-    \newcommand\cqut@headtext{重庆理工大学课程设计（论文）}
+    \newcommand\cqut@headtext{化工原理课程设计}
     \newcommand\cqut@foottext{\thepage}
     \newcommand\cqut@dcl@title{诚信声明}
     \newcommand\cqut@dcl@ideclare{本人声明：}
@@ -693,11 +693,13 @@
     \fi
 }
 \ifcqut@bachelor
-    \newcommand{\dcaption}[1]{%
-        \caption{#1}\addcontentsline{toc}{subsection}{%
-            \hspace{2.5em}\cqut@dfigurename~\thefigure\hspace{1em}{#1}%
-        }
-    }
+	\newcommand{\dcaption}[1]{%
+		\refstepcounter{figure} % 确保图纸计数器递增
+		\caption{#1}
+		\addcontentsline{toc}{section}{%
+			\hspace{2.5em}\cqut@dfigurename~\thefigure\hspace{1em}{#1}%
+		}
+	}
     \newcommand{\cqut@listof}[2]{%
         \xpatchcmd{\@dottedtocline}{\hbox{.}}{\hbox{$\cdot$}}{}{}
         \renewcommand{\@dotsep}{1.7}%

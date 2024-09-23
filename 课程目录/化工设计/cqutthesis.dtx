@@ -1120,7 +1120,7 @@
 % \subsection{常量设置}
 %    \begin{macrocode}
 \ifcqut@bachelor
-    \newcommand\cqut@headtext{重庆理工大学毕业设计（论文）}
+    \newcommand\cqut@headtext{化工原理课程设计}
     \newcommand\cqut@foottext{\thepage}
     \newcommand\cqut@dcl@title{诚信声明}
     \newcommand\cqut@dcl@ideclare{本人声明：}
@@ -1928,11 +1928,13 @@
 % 为保证在目录中的文字对齐，所以增加其缩进。
 %    \begin{macrocode}
 \ifcqut@bachelor
-    \newcommand{\dcaption}[1]{%
-        \caption{#1}\addcontentsline{toc}{subsection}{%
-            \hspace{2.5em}\cqut@dfigurename~\thefigure\hspace{1em}{#1}%
-        }
-    }
+	\newcommand{\dcaption}[1]{%
+		\refstepcounter{figure} % 确保图纸计数器递增
+		\caption{#1}
+		\addcontentsline{toc}{section}{%
+			\hspace{2.5em}\cqut@dfigurename~\thefigure\hspace{1em}{#1}%
+		}
+	}
 %    \end{macrocode}
 % \end{macro}
 %
